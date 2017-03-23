@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,7 @@ public class AgronomistDAO {
                                 DataBaseHelper.Agronomist.COLUNAS, null, null, null, null, null);
         List<Agronomist> agronomists = new ArrayList<Agronomist>();
         while(cursor.moveToNext()){
-            Agronomist model = createAgronomist(cursor);
+            Agronomist model = create(cursor);
             agronomists.add(model);
         }
         cursor.close();
@@ -105,7 +105,7 @@ public class AgronomistDAO {
     }
 
     public void close(){
-        databaseHelper.close();
+        dataBaseHelper.close();
         database = null;
     }
 
