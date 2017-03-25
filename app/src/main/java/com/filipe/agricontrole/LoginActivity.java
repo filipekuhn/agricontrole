@@ -1,5 +1,6 @@
 package com.filipe.agricontrole;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Message;
@@ -7,6 +8,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -50,12 +53,12 @@ public class LoginActivity extends AppCompatActivity {
 
         if(email == null || email.equals("")){
             validation = false;
-            edtEmail.setError(getString(R.string.login_valemail));
+            edtEmail.setError(getString(R.string.login_valEmail));
         }
 
         if(password == null || password.equals("")){
             validation = false;
-            edtPassword.setError(getString(R.string.login_valpassword));
+            edtPassword.setError(getString(R.string.login_valPassword));
         }
 
         if(validation){

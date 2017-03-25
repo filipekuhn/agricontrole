@@ -1,33 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context="com.filipe.agricontrole.LoginActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:weightSum="1">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:minHeight="112dp"
+            app:srcCompat="@mipmap/agricontrole_logo_sem_fundo" />
 
-    </android.support.design.widget.AppBarLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_txtEmail"
+            android:textStyle="bold" />
 
-    <include layout="@layout/content_login" />
+        <EditText
+            android:id="@+id/login_edtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:textColorHighlight="@android:color/holo_green_dark"
+            android:textColorLink="@android:color/holo_green_dark"
+            android:textCursorDrawable="@android:color/holo_green_dark"
+            android:textIsSelectable="false" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_txtPassword"
+            android:textStyle="bold" />
 
-</android.support.design.widget.CoordinatorLayout>
+        <EditText
+            android:id="@+id/login_edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:inputType="textPassword"
+            android:textColorHighlight="@android:color/holo_green_dark"
+            android:textColorLink="@android:color/holo_green_dark"
+            android:textCursorDrawable="@android:color/holo_green_dark" />
+
+        <CheckBox
+            android:id="@+id/login_ckbConected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:freezesText="false"
+            android:text="@string/login_ckbConected"
+            android:textColor="@android:color/background_dark"
+            android:textColorHighlight="@android:color/holo_green_dark"
+            android:textColorLink="@android:color/holo_green_dark"
+            app:buttonTint="@android:color/holo_green_dark"
+            tools:clickable="true" />
+
+        <Button
+            android:id="@+id/login_btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_dark"
+            android:onClick="logar"
+            android:text="@string/login_btnLogin"
+            android:textColor="#FFF"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</ScrollView>

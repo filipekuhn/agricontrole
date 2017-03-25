@@ -1,4 +1,31 @@
 <resources>
     <string name="app_name">Agricontrole</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Tela de Login</string>
+    <string name="action_settings">Configurações</string>
+
+
+    <!-- Login -->
+    <string name="login_txtEmail">Email:</string>
+    <string name="login_txtPassword">Senha:</string>
+    <string name="login_btnLogin">Entrar</string>
+    <string name="login_ckbConected">Manter conectado?</string>
+
+    <!-- Validacaoes -->
+    <string name="login_valEmail">Usuário obrigatório.</string>
+    <string name="login_valPassword">Senha obrigatório.</string>
+    <string name="campo_obrigatorio">Campo obrigatório.</string>
+
+    <!-- Mensagens -->
+    <string name="msg_login_incorreto">Usuário e/ou senha inválido.</string>
+    <string name="title_activity_cad_usuario">Cadastro de Usuários</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="mensagem_cadastro">Registro cadastrado com sucesso!</string>
+    <string name="mensagem_atualizar">Registro atualizado com sucesso!</string>
+    <string name="mensagem_erro">Erro ao salvar!</string>
+
+    <!-- Usuarios -->
+    <string name="usuario_txtNane">Nome:</string>
+    <string name="usuario_txtEmail">Login:</string>
+    <string name="usuario_txtPassword">Senha:</string>
+    <string name="list_users">Lista de usuários</string>
 </resources>
