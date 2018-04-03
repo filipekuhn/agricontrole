@@ -23,7 +23,7 @@ public class Agronomist {
         this.name = name;
         this.surename = surename;
         this.cellphone = cellphone;
-        this.email = email;
+        this.email = email;s
         this.password = password;
         this.created_at = created_at;
     }
