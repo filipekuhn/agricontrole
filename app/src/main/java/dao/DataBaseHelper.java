@@ -12,17 +12,25 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE = "agricontrole";
     private static final int VERSION = 1;
+    private static final String PATH_DATABASE = "/data/user/0/com.filipe.agricontrole/agricontrole";
+
+    private Context mContext;
 
     public DataBaseHelper(Context context){
+
         super(context, DATABASE, null, VERSION);
+        this.mContext = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         //agronomist table
-        db.execSQL("create table agronomist(id integer primary key autoincrement, "
+        db.execSQL("create table agronomist(_id integer primary key autoincrement, "
                 +"name varchar(45) not null, surename varchar(45), cellphone varchar (14) not null," +
                 "email varchar(45) not null unique, password varchar(45) not null, created_at datetime)");
+
+        db.execSQL("INSERT INTO agronomist (name, surename, cellphone, email, password) VALUES +" +
+                "('Agricontrole', 'Admin', '42999387879', 'admin@admin.com', '123' )");
 
     }
 

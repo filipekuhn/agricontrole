@@ -21,7 +21,7 @@
             android:adjustViewBounds="false"
             android:cropToPadding="false"
             android:minHeight="112dp"
-            app:srcCompat="@mipmap/agricontrole_logo_sem_fundo" />
+            app:srcCompat="@mipmap/ic_logo" />
 
         <TextView
             android:layout_width="match_parent"
@@ -76,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_dark"
-            android:onClick="logar"
+            android:onClick="login"
             android:text="@string/login_btnLogin"
             android:textColor="#FFF"
             android:textStyle="bold" />
