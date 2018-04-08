@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE = "agricontrole";
+    private static final String DATABASE = "agricontrole.db";
     private static final int VERSION = 1;
     private static final String PATH_DATABASE = "/data/user/0/com.filipe.agricontrole/agricontrole";
 
