@@ -14,13 +14,13 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import dao.AgronomistDAO;
+import com.filipe.agricontrole.data.repo.AgronomistRepo;
 import util.Messages;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText edtEmail, edtPassword;
-    private AgronomistDAO helper;
+    private AgronomistRepo helper;
     private CheckBox ckbConected;
 
     private static final String STAY_CONNECTED = "manter_conectado";
@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(email == null || email.equals("")){
             validation = false;
-            edtEmail.setError(getString(R.string.login_valEmail));
+            edtEmail.setError("È necessário informar o email");
         }
 
         if(password == null || password.equals("")){

@@ -19,7 +19,7 @@ public class AgronomistRepo  {
 
 
     public static String createTable(){
-        return "CREATE TABLE " + Agronomist.TABLE  + "("
+        return "CREATE TABLE IF NOT EXISTS" + Agronomist.TABLE  + "("
                 + Agronomist.KEY_AgronomistId  + "   PRIMARY KEY AUTOINCREMENT, "
                 + Agronomist.KEY_Name + " VARCHAR(45) NOT NULL, "
                 + Agronomist.KEY_SureName + "VARCHAR(45) NOT NULL, "
@@ -51,10 +51,15 @@ public class AgronomistRepo  {
     }
 
 
-    /*
+
     public void delete( ) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-        db.delete(Course.TABLE,null,null);
+        db.delete(Agronomist.TABLE,null,null);
         DatabaseManager.getInstance().closeDatabase();
-    }*/
+    }
+
+    public void login(String email, String password){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        db.
+    }
 }
