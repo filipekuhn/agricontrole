@@ -2,6 +2,7 @@ package com.filipe.agricontrole.data.repo;
 
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.filipe.agricontrole.data.DatabaseManager;
@@ -19,16 +20,21 @@ public class AgronomistRepo  {
 
 
     public static String createTable(){
-        return "CREATE TABLE IF NOT EXISTS" + Agronomist.TABLE  + "("
-                + Agronomist.KEY_AgronomistId  + "   PRIMARY KEY AUTOINCREMENT, "
-                + Agronomist.KEY_Name + " VARCHAR(45) NOT NULL, "
-                + Agronomist.KEY_SureName + "VARCHAR(45) NOT NULL, "
-                + Agronomist.KEY_CellPhone + " VARCHAR(14) NOT NULL, "
-                + Agronomist.KEY_Email + " VARCHAR(45) NOT NULL UNIQUE, "
-                + Agronomist.KEY_Password + " VARCHAR(45) NOT NULL, "
-                + Agronomist.KEY_CreatedAt+ " DATETIME);";
+        return "CREATE TABLE IF NOT EXISTS '" + Agronomist.TABLE  + "' ('"
+                + Agronomist.KEY_AgronomistId  + "'  INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Agronomist.KEY_Name + "' TEXT NOT NULL, '"
+                + Agronomist.KEY_SureName + "' TEXT NOT NULL, '"
+                + Agronomist.KEY_CellPhone + "' TEXT NOT NULL, '"
+                + Agronomist.KEY_Email + "' TEXT NOT NULL UNIQUE, '"
+                + Agronomist.KEY_Password + "' TEXT NOT NULL, '"
+                + Agronomist.KEY_CreatedAt+ "' TEXT NOT NULL " +
+                ");";
     }
 
+    public static String insertAdm(){
+        return "INSERT INTO " + Agronomist.TABLE + " VALUES(1, 'Administrador', 'ADM', '(42)999387879' "
+                + "'adm@agricontrole.com', 'abc123', datetime('now', 'localtime'));";
+    }
 
     public int insert(Agronomist agronomist) {
         int agronomistId;
@@ -58,8 +64,23 @@ public class AgronomistRepo  {
         DatabaseManager.getInstance().closeDatabase();
     }
 
-    public void login(String email, String password){
+    public boolean login(String email, String password){
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-        db.
+        String sql = "SELECT " + Agronomist.KEY_Email + ", " + Agronomist.KEY_Password + " FROM "
+                + Agronomist.TABLE + " WHERE " + Agronomist.KEY_Email + " = ?;";
+
+        Cursor c = db.rawQuery(sql,  new String[] { String.valueOf(email) });
+
+        if(c.getCount() > 0){
+
+
+            c.moveToFirst();
+
+            if(email == Long.toString(c.getLong(0)) && password == Long.toString(c.getLong(1)))
+                return true;
+            else
+                return false;
+        }
+        return false;
     }
 }

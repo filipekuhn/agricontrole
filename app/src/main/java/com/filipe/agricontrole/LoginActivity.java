@@ -3,11 +3,7 @@ package com.filipe.agricontrole;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
+
 import util.Messages;
 
 public class LoginActivity extends AppCompatActivity {
@@ -35,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword     = (EditText) findViewById(R.id.login_edtPassword);
         ckbConected = (CheckBox) findViewById(R.id.login_ckbConected);
 
-        helper = new AgronomistDAO(this);
+        helper = new AgronomistRepo();
 
         SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
         boolean conected = preferences.getBoolean(STAY_CONNECTED, false);
@@ -53,12 +50,14 @@ public class LoginActivity extends AppCompatActivity {
 
         if(email == null || email.equals("")){
             validation = false;
-            edtEmail.setError("È necessário informar o email");
+            //edtEmail.setError("È necessário informar o email");
+            Messages.Message(this, "O login deve ser informado");
         }
 
         if(password == null || password.equals("")){
             validation = false;
-            edtPassword.setError(getString(R.string.login_valPassword));
+            //edtPassword.setError(getString(R.string.login_valPassword));
+            Messages.Message(this, "A senha deve ser informada");
         }
 
         if(validation){

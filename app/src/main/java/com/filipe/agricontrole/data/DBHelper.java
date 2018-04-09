@@ -24,6 +24,7 @@ public class DBHelper  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //All necessary tables you like to create will create here
         db.execSQL(AgronomistRepo.createTable());
+        db.execSQL(AgronomistRepo.insertAdm());
     }
 
     @Override
