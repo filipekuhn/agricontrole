@@ -60,21 +60,25 @@ public class LoginActivity extends AppCompatActivity {
             Messages.Message(this, "A senha deve ser informada");
         }
 
-        if(validation){
+        if(validation)
+        {
             //logar
-            if(helper.login(email,password)){
-                if(ckbConected.isChecked()){
+            if(helper.login(email, password))
+            {
+                /*if(ckbConected.isChecked())
+                {
                     SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
                     SharedPreferences.Editor editor     = sharedPreferences.edit();
 
                     editor.putBoolean(STAY_CONNECTED, true);
                     editor.commit();
-                }
+                }*/
 
                 ChamarMainAcitivity();
-            }else{
-                Messages.Message(this, getString(R.string.msg_login_incorreto));
             }
+            else
+                Messages.Message(this, getString(R.string.msg_login_incorreto));
+
         }
     }
 
