@@ -70,17 +70,25 @@ public class AgronomistRepo  {
 
     public boolean login(String email, String password)
     {
+        System.out.println("Param " + email);
+        System.out.println("Param" + password);
+
         String[] emailSplit = email.split("[@]");
 
+        System.out.println(emailSplit[0]);
+        System.out.println(emailSplit[1]);
         if(emailSplit.length  > 1)
         {
             SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
             Cursor c = db.query(Agronomist.TABLE, new String[]{String.valueOf(Agronomist.KEY_Email), String.valueOf(Agronomist.KEY_Password)}, Agronomist.KEY_Email + " = '" + emailSplit[0] + "@" + emailSplit[1] + "';", null, null, null, null, null);
 
+            System.out.println(c.getCount());
             if (c.getCount() > 0) {
 
                 c.moveToFirst();
 
+                System.out.println(c.getString(0));
+                System.out.println(c.getString(1));
                 if (email.equals(c.getString(0)) && password.equals(c.getString(1))) {
                     DatabaseManager.getInstance().closeDatabase();
                     return true;
