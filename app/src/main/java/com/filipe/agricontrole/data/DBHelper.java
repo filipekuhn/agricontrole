@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.filipe.agricontrole.app.App;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
+import com.filipe.agricontrole.data.repo.FarmRepo;
 
 public class DBHelper  extends SQLiteOpenHelper {
     //version number to upgrade database version
@@ -25,6 +26,7 @@ public class DBHelper  extends SQLiteOpenHelper {
         //All necessary tables you like to create will create here
         db.execSQL(AgronomistRepo.createTable());
         db.execSQL(AgronomistRepo.insertAdm());
+        db.execSQL(FarmRepo.createTable());
     }
 
     @Override

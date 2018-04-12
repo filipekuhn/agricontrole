@@ -19,8 +19,7 @@ public class AgronomistRepo  {
     }
 
 
-    public static String createTable()
-    {
+    public static String createTable() {
         return "CREATE TABLE IF NOT EXISTS '" + Agronomist.TABLE  + "' ('"
                 + Agronomist.KEY_AgronomistId  + "'  INTEGER PRIMARY KEY AUTOINCREMENT, '"
                 + Agronomist.KEY_Name + "' TEXT NOT NULL, '"
@@ -32,14 +31,12 @@ public class AgronomistRepo  {
                 ");";
     }
 
-    public static String insertAdm()
-    {
+    public static String insertAdm() {
         return "INSERT INTO " + Agronomist.TABLE + " VALUES(1, 'Administrador', 'ADM', '(42)999387879', "
                 + "'adm@agricontrole.com', 'abc123', datetime('now', 'localtime'));";
     }
 
-    public int insert(Agronomist agronomist)
-    {
+    public int insert(Agronomist agronomist) {
         int agronomistId;
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         ContentValues values = new ContentValues();
@@ -61,15 +58,13 @@ public class AgronomistRepo  {
 
 
 
-    public void delete( )
-    {
+    public void delete( ) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         db.delete(Agronomist.TABLE,null,null);
         DatabaseManager.getInstance().closeDatabase();
     }
 
-    public boolean login(String email, String password)
-    {
+    public boolean login(String email, String password) {
         System.out.println("Param " + email);
         System.out.println("Param" + password);
 

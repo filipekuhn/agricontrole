@@ -76,9 +76,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 ChamarMainAcitivity();
             }
-            else
+            else {
                 Messages.Message(this, getString(R.string.msg_login_incorreto));
 
+                /*new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Algo deu errado?")
+                        .setContentText("Usuário ou senha inválido!")
+                        .show();*/
+            }
         }
     }
 

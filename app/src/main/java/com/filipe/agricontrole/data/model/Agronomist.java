@@ -7,15 +7,15 @@ package com.filipe.agricontrole.data.model;
 public class Agronomist {
 
     public static final String TAG = Agronomist.class.getSimpleName();
-    public static final String TABLE = "Agronomist";
+    public static final String TABLE = "agronomist";
     // Labels Table Columns names
-    public static final String KEY_AgronomistId = "Id";
-    public static final String KEY_Name = "Name";
-    public static final String KEY_SureName = "SureName";
-    public static final String KEY_CellPhone = "CellPhone";
-    public static final String KEY_Email = "Email";
-    public static final String KEY_Password = "Password";
-    public static final String KEY_CreatedAt = "CreatedAt";
+    public static final String KEY_AgronomistId = "id";
+    public static final String KEY_Name = "name";
+    public static final String KEY_SureName = "surename";
+    public static final String KEY_CellPhone = "cellphone";
+    public static final String KEY_Email = "email";
+    public static final String KEY_Password = "password";
+    public static final String KEY_CreatedAt = "createdAt";
 
     private Integer id;
     private String name;
