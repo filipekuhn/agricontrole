@@ -20,14 +20,14 @@ public class AgronomistRepo  {
 
 
     public static String createTable() {
-        return "CREATE TABLE IF NOT EXISTS '" + Agronomist.TABLE  + "' ('"
-                + Agronomist.KEY_AgronomistId  + "'  INTEGER PRIMARY KEY AUTOINCREMENT, '"
-                + Agronomist.KEY_Name + "' TEXT NOT NULL, '"
-                + Agronomist.KEY_SureName + "' TEXT NOT NULL, '"
-                + Agronomist.KEY_CellPhone + "' TEXT NOT NULL, '"
-                + Agronomist.KEY_Email + "' TEXT NOT NULL UNIQUE, '"
-                + Agronomist.KEY_Password + "' TEXT NOT NULL, '"
-                + Agronomist.KEY_CreatedAt + "' TEXT NOT NULL " +
+        return "CREATE TABLE IF NOT EXISTS " + Agronomist.TABLE  + " ("
+                + Agronomist.KEY_AgronomistId  + "  INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + Agronomist.KEY_Name + " TEXT NOT NULL, "
+                + Agronomist.KEY_SureName + " TEXT NOT NULL, "
+                + Agronomist.KEY_CellPhone + " TEXT NOT NULL, "
+                + Agronomist.KEY_Email + " TEXT NOT NULL UNIQUE, "
+                + Agronomist.KEY_Password + " TEXT NOT NULL, "
+                + Agronomist.KEY_CreatedAt + " TEXT NOT NULL " +
                 ");";
     }
 
@@ -65,13 +65,9 @@ public class AgronomistRepo  {
     }
 
     public boolean login(String email, String password) {
-        System.out.println("Param " + email);
-        System.out.println("Param" + password);
 
         String[] emailSplit = email.split("[@]");
 
-        System.out.println(emailSplit[0]);
-        System.out.println(emailSplit[1]);
         if(emailSplit.length  > 1)
         {
             SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();

@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import util.Messages;
 
 public class LoginActivity extends AppCompatActivity {
@@ -77,12 +78,12 @@ public class LoginActivity extends AppCompatActivity {
                 ChamarMainAcitivity();
             }
             else {
-                Messages.Message(this, getString(R.string.msg_login_incorreto));
+              //  Messages.Message(this, getString(R.string.msg_login_incorreto));
 
-                /*new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("Algo deu errado?")
                         .setContentText("Usuário ou senha inválido!")
-                        .show();*/
+                        .show();
             }
         }
     }
