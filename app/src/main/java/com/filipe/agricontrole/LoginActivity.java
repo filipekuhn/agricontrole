@@ -95,7 +95,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void signUp(View view){
         startActivity(new Intent(this, SignUpActivity.class));
-        finish();
     }
 
 

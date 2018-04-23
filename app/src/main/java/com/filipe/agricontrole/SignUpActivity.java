@@ -1,5 +1,6 @@
 package com.filipe.agricontrole;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,6 +11,8 @@ import com.filipe.agricontrole.data.repo.AgronomistRepo;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -51,6 +54,18 @@ public class SignUpActivity extends AppCompatActivity {
         agronomist.setCreated_at(dateFormat.format(date).toString());
 
 
-        helper.insert(agronomist);
+        if(helper.insert(agronomist) > 0){
+            callMainAcitivity();
+        }
+        else{
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Algo deu errado!")
+                    .setContentText("Confira os dados preenchidos!")
+                    .show();
+        }
+    }
+
+    private void callMainAcitivity(){
+        startActivity(new Intent(this, MainActivity.class));
     }
 }
