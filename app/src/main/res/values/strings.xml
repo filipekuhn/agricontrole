@@ -9,13 +9,26 @@
     <string name="login_txtPassword">Senha:</string>
     <string name="login_btnLogin">Entrar</string>
     <string name="login_ckbConected">Manter conectado?</string>
+    <string name="login_btnSignUp">Cadastrar-se</string>
 
-    <!-- Validacaoes -->
+    <!-- SignUp -->
+
+    <string name="signUp_txtName">Nome:</string>
+    <string name="signUp_txtSurename">Sobrenome:</string>
+    <string name="signUp_txtCellphone">Celular:</string>
+    <string name="signUp_txtCellphone2">Telefone:</string>
+    <string name="signUp_Email">Email:</string>
+    <string name="signUp_txtEmail">Email:</string>
+    <string name="signUp_txtPassword">Senha:</string>
+    <string name="signUp_btnSave">Cadastrar</string>
+
+
+    <!-- Validations -->
     <string name="login_valEmail">Usuário obrigatório.</string>
     <string name="login_valPassword">Senha obrigatório.</string>
     <string name="campo_obrigatorio">Campo obrigatório.</string>
 
-    <!-- Mensagens -->
+    <!-- Messages -->
     <string name="msg_login_incorreto">Usuário e/ou senha inválido.</string>
     <string name="title_activity_cad_usuario">Cadastro de Usuários</string>
     <string name="hello_world">Hello world!</string>
@@ -23,9 +36,10 @@
     <string name="mensagem_atualizar">Registro atualizado com sucesso!</string>
     <string name="mensagem_erro">Erro ao salvar!</string>
 
-    <!-- Usuarios -->
+    <!-- Users -->
     <string name="usuario_txtNane">Nome:</string>
     <string name="usuario_txtEmail">Login:</string>
     <string name="usuario_txtPassword">Senha:</string>
     <string name="list_users">Lista de usuários</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
 </resources>

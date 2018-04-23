@@ -93,6 +93,12 @@ public class LoginActivity extends AppCompatActivity {
         finish();
     }
 
+    public void signUp(View view){
+        startActivity(new Intent(this, SignUpActivity.class));
+        finish();
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
