@@ -13,7 +13,6 @@ import android.widget.EditText;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import util.Messages;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -52,13 +51,19 @@ public class LoginActivity extends AppCompatActivity {
         if(email == null || email.equals("")){
             validation = false;
             //edtEmail.setError("È necessário informar o email");
-            Messages.Message(this, "O login deve ser informado");
+            //Messages.Message(this, "O login deve ser informado");
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("O login deve ser informado")
+                    .show();
         }
 
         if(password == null || password.equals("")){
             validation = false;
             //edtPassword.setError(getString(R.string.login_valPassword));
-            Messages.Message(this, "A senha deve ser informada");
+            //Messages.Message(this, "A senha deve ser informada");
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("A senha deve ser informada")
+                    .show();
         }
 
         if(validation)
@@ -81,8 +86,8 @@ public class LoginActivity extends AppCompatActivity {
               //  Messages.Message(this, getString(R.string.msg_login_incorreto));
 
                 new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Algo deu errado?")
-                        .setContentText("Usuário ou senha inválido!")
+                        .setTitleText("Algo deu errado")
+                        .setContentText("Usuário ou senha inválido")
                         .show();
             }
         }

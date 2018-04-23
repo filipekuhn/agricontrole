@@ -55,6 +55,9 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         if(helper.insert(agronomist) > 0){
+            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Cadastro realizado com sucesso")
+                    .show();
             callMainAcitivity();
         }
         else{
