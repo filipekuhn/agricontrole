@@ -42,4 +42,5 @@
     <string name="usuario_txtPassword">Senha:</string>
     <string name="list_users">Lista de usuários</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_auto_login">AutoLoginActivity</string>
 </resources>

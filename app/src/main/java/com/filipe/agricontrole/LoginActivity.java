@@ -16,30 +16,27 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText edtEmail, edtPassword;
-    private AgronomistRepo helper;
-    private CheckBox ckbConected;
+    EditText edtEmail, edtPassword;
+    AgronomistRepo helper;
+    CheckBox ckbConected;
 
-    private static final String STAY_CONNECTED = "manter_conectado";
     private static final String PREFERENCE_NAME  = "LoginActivityPreferences";
+
+    SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
+    SharedPreferences.Editor editor     = sharedPreferences.edit();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        isLogged();
+
         edtEmail   = (EditText) findViewById(R.id.login_edtEmail);
         edtPassword     = (EditText) findViewById(R.id.login_edtPassword);
         ckbConected = (CheckBox) findViewById(R.id.login_ckbConected);
 
         helper = new AgronomistRepo();
-
-        SharedPreferences preferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-        boolean conected = preferences.getBoolean(STAY_CONNECTED, false);
-
-        if(conected){
-            ChamarMainAcitivity();
-        }
     }
 
     public void login(View view){
@@ -71,14 +68,13 @@ public class LoginActivity extends AppCompatActivity {
             //logar
             if(helper.login(email, password))
             {
-                /*if(ckbConected.isChecked())
+                if(ckbConected.isChecked())
                 {
-                    SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-                    SharedPreferences.Editor editor     = sharedPreferences.edit();
-
-                    editor.putBoolean(STAY_CONNECTED, true);
+                    editor.putBoolean("remember", true);
+                    editor.putString("email", email);
+                    editor.putString("password", password);
                     editor.commit();
-                }*/
+                }
 
                 ChamarMainAcitivity();
             }
@@ -102,6 +98,15 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, SignUpActivity.class));
     }
 
+    public void isLogged(){
+        String email = sharedPreferences.getString("email", null);
+        String password = sharedPreferences.getString("password", null);
+
+        if(email != null && password != null){
+            if(helper.login(email, password))
+                ChamarMainAcitivity();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
