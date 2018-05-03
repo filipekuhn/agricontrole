@@ -43,4 +43,7 @@
     <string name="list_users">Lista de usuários</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_auto_login">AutoLoginActivity</string>
+
+    <!-- Main Menu -->
+    <string name="main_logout">Sair</string>
 </resources>

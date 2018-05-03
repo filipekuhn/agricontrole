@@ -28,10 +28,6 @@
             android:name=".SignUpActivity"
             android:label="Cadastro"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".AutoLoginActivity"
-            android:label="@string/title_activity_auto_login"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

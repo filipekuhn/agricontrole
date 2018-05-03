@@ -3,6 +3,7 @@ package com.filipe.agricontrole;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,21 +23,19 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String PREFERENCE_NAME  = "LoginActivityPreferences";
 
-    SharedPreferences sharedPreferences = getSharedPreferences(PREFERENCE_NAME, MODE_PRIVATE);
-    SharedPreferences.Editor editor     = sharedPreferences.edit();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        isLogged();
 
         edtEmail   = (EditText) findViewById(R.id.login_edtEmail);
         edtPassword     = (EditText) findViewById(R.id.login_edtPassword);
         ckbConected = (CheckBox) findViewById(R.id.login_ckbConected);
 
         helper = new AgronomistRepo();
+
+        if(isLogged())
+            ChamarMainAcitivity();
     }
 
     public void login(View view){
@@ -70,6 +69,9 @@ public class LoginActivity extends AppCompatActivity {
             {
                 if(ckbConected.isChecked())
                 {
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences.Editor editor     = sharedPreferences.edit();
+
                     editor.putBoolean("remember", true);
                     editor.putString("email", email);
                     editor.putString("password", password);
@@ -98,14 +100,16 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, SignUpActivity.class));
     }
 
-    public void isLogged(){
-        String email = sharedPreferences.getString("email", null);
-        String password = sharedPreferences.getString("password", null);
-
+    private boolean isLogged(){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String email = preferences.getString("email", null);
+        String password = preferences.getString("password", null);
+        System.out.println(email + " " + password );
         if(email != null && password != null){
             if(helper.login(email, password))
-                ChamarMainAcitivity();
+                return true;
         }
+        return false;
     }
 
     @Override
