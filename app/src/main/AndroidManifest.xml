@@ -28,6 +28,10 @@
             android:name=".SignUpActivity"
             android:label="Cadastro"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FarmActivity"
+            android:label="@string/title_activity_farm"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

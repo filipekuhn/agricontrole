@@ -78,7 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                     editor.commit();
                 }
 
-                ChamarMainAcitivity();
+                //ChamarMainAcitivity();
+                startActivity(new Intent(this, FarmActivity.class));
             }
             else {
               //  Messages.Message(this, getString(R.string.msg_login_incorreto));
@@ -126,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.login_help) {
             return true;
         }
         return super.onOptionsItemSelected(item);
