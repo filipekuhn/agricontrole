@@ -36,7 +36,7 @@ public class AgronomistRepo  {
                 + "'adm@agricontrole.com', 'abc123', datetime('now', 'localtime'));";
     }
 
-    public int insert(Agronomist agronomist) {
+    public int insert(Agronomist agronomist){
         int agronomistId;
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         ContentValues values = new ContentValues();
@@ -56,7 +56,43 @@ public class AgronomistRepo  {
         return agronomistId;
     }
 
+    public int update(Agronomist agronomist){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Agronomist.KEY_Name, agronomist.getName());
+        values.put(Agronomist.KEY_SureName, agronomist.getSurename());
+        values.put(Agronomist.KEY_CellPhone, agronomist.getCellphone());
+        values.put(Agronomist.KEY_Email, agronomist.getEmail());
+        values.put(Agronomist.KEY_Password, agronomist.getPassword());
+        String id = String.valueOf(agronomist.getId());
+        String where = Agronomist.KEY_AgronomistId + "=?";
+        String[] whereArgs = new String[] {id};
+        int count = db.update(Agronomist.TABLE, values, where, whereArgs);
+        DatabaseManager.getInstance().closeDatabase();
+        return count;
+    }
 
+    public Agronomist findByEmail(String email){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor c = db.query(Agronomist.TABLE, new String[]{String.valueOf(Agronomist.KEY_AgronomistId) ,String.valueOf(Agronomist.KEY_Name), String.valueOf(Agronomist.KEY_SureName),
+                String.valueOf(Agronomist.KEY_CellPhone), String.valueOf(Agronomist.KEY_Email), String.valueOf(Agronomist.KEY_Password)},
+                Agronomist.KEY_Email + " = '" + email + "'", null, null, null, null, null);
+
+        c.moveToFirst();
+        Agronomist agronomist = new Agronomist();
+        if(c.getCount() > 0) {
+            agronomist.setId(c.getInt(0));
+            agronomist.setName(c.getString(1));
+            agronomist.setSurename(c.getString(2));
+            agronomist.setCellphone(c.getString(3));
+            agronomist.setEmail(c.getString(4));
+            agronomist.setPassword(c.getString(5));
+
+            return  agronomist;
+        }
+
+        return agronomist;
+    }
 
     public void delete( ) {
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
@@ -65,29 +101,36 @@ public class AgronomistRepo  {
     }
 
     public boolean login(String email, String password) {
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor c = db.query(Agronomist.TABLE, new String[]{String.valueOf(Agronomist.KEY_Email), String.valueOf(Agronomist.KEY_Password)}, Agronomist.KEY_Email + " = '" + email + "'", null, null, null, null, null);
 
-        String[] emailSplit = email.split("[@]");
+        System.out.println(c.getCount());
+        if (c.getCount() > 0) {
 
-        if(emailSplit.length  > 1)
-        {
-            SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-            Cursor c = db.query(Agronomist.TABLE, new String[]{String.valueOf(Agronomist.KEY_Email), String.valueOf(Agronomist.KEY_Password)}, Agronomist.KEY_Email + " = '" + emailSplit[0] + "@" + emailSplit[1] + "';", null, null, null, null, null);
+            c.moveToFirst();
 
-            System.out.println(c.getCount());
-            if (c.getCount() > 0) {
+            System.out.println(c.getString(0));
+            System.out.println(c.getString(1));
+            if (email.equals(c.getString(0)) && password.equals(c.getString(1))) {
+                DatabaseManager.getInstance().closeDatabase();
+                return true;
 
-                c.moveToFirst();
-
-                System.out.println(c.getString(0));
-                System.out.println(c.getString(1));
-                if (email.equals(c.getString(0)) && password.equals(c.getString(1))) {
-                    DatabaseManager.getInstance().closeDatabase();
-                    return true;
-
-                }
             }
         }
+
         DatabaseManager.getInstance().closeDatabase();
         return false;
+    }
+
+    public String getCurrentUserName(String email){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor c = db.query(Agronomist.TABLE, new String[]{String.valueOf(Agronomist.KEY_Name)}, Agronomist.KEY_Email + " = '" + email + "'", null, null, null, null, null);
+
+        if(c.getCount() > 0){
+            c.moveToFirst();
+
+            return c.getString(0);
+        }
+        return "Usuário";
     }
 }

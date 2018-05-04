@@ -5,9 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,9 +14,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+import com.filipe.agricontrole.data.repo.AgronomistRepo;
 
 public class FarmActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    AgronomistRepo helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,8 @@ public class FarmActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        helper = new AgronomistRepo();
     }
 
     @Override
@@ -59,6 +66,17 @@ public class FarmActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.farm, menu);
+
+        //Get Shared preferences to list name, surename and email of the user.
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String email = preferences.getString("email", null);
+        String name = helper.getCurrentUserName(email);
+
+        TextView current_user_name = (TextView) findViewById(R.id.current_user_name);
+        current_user_name.setText("Bem Vindo, " + name);
+
+        TextView current_user_email = (TextView) findViewById(R.id.current_user_email);
+        current_user_email.setText(email);
         return true;
     }
 
@@ -98,7 +116,7 @@ public class FarmActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
+            startActivity(new Intent(this, AgronomistActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

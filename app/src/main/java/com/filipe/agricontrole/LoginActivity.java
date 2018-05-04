@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         helper = new AgronomistRepo();
 
         if(isLogged())
-            ChamarMainAcitivity();
+            startActivity(new Intent(this, FarmActivity.class));
     }
 
     public void login(View view){
@@ -77,8 +77,13 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("password", password);
                     editor.commit();
                 }
+                else{
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    SharedPreferences.Editor editor     = sharedPreferences.edit();
 
-                //ChamarMainAcitivity();
+                    editor.putString("email", email);
+                    editor.commit();
+                }
                 startActivity(new Intent(this, FarmActivity.class));
             }
             else {
