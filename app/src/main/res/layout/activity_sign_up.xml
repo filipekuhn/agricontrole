@@ -69,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:inputType="phone"
             android:backgroundTint="@android:color/holo_green_dark"
             android:textColorHighlight="@android:color/holo_green_dark"
             android:textColorLink="@android:color/holo_green_dark"

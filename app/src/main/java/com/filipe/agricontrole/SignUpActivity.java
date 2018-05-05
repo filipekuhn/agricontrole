@@ -58,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
             new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
                     .setTitleText("Cadastro realizado com sucesso")
                     .show();
-            callMainAcitivity();
+            callFarmAcitivity();
         }
         else{
             new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
@@ -68,7 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    private void callMainAcitivity(){
-        startActivity(new Intent(this, MainActivity.class));
+    private void callFarmAcitivity(){
+        startActivity(new Intent(this, FarmActivity.class));
     }
 }

@@ -1,13 +1,17 @@
 package com.filipe.agricontrole;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 
 import com.filipe.agricontrole.data.model.Agronomist;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class AgronomistActivity extends AppCompatActivity {
 
@@ -41,7 +45,33 @@ public class AgronomistActivity extends AppCompatActivity {
         edtCellphone.setText(agronomist.getCellphone());
         edtEmail.setText(agronomist.getEmail());
         edtPassword.setText(agronomist.getPassword());
+    }
 
+    public void save(View view){
+        String name = edtName.getText().toString();
+        String surename = edtSurename.getText().toString();
+        String cellphone = edtCellphone.getText().toString();
+        String email = edtEmail.getText().toString();
+        String password   = edtPassword.getText().toString();
+
+        agronomist.setName(name);
+        agronomist.setSurename(surename);
+        agronomist.setCellphone(cellphone);
+        agronomist.setEmail(email);
+        agronomist.setPassword(password);
+
+        if(helper.update(agronomist) > 0){
+            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Alteração realizada com sucesso")
+                    .show();
+            startActivity(new Intent(this, FarmActivity.class));
+        }
+        else{
+            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Algo deu errado!")
+                    .setContentText("Confira os dados preenchidos!")
+                    .show();
+        }
     }
 
 }
