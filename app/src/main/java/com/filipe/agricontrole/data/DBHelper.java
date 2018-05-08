@@ -28,6 +28,8 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL(AgronomistRepo.insertAdm());
         db.execSQL(FarmRepo.createTable());
         db.execSQL(FarmRepo.insertTestFarm());
+        db.execSQL(FarmRepo.insertSecondFarm());
+        System.out.println(FarmRepo.insertTestFarm());
     }
 
     @Override

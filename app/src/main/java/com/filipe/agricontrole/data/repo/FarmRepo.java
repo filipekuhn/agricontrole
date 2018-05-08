@@ -36,8 +36,12 @@ public class FarmRepo {
 
     public static String insertTestFarm(){
         return "INSERT INTO " + Farm.TABLE + " VALUES(1, 1, 'Fazenda Rio Bonito', 'Linha Morangaba', 1, 1); " +
-                "INSERT INTO " + Farm.TABLE + " VALUES(2, 1, 'Fazenda Nova Esperança', 'Linha Nova Baixada', 1,1); " +
-                "INSERT INTO " + Farm.TABLE + " VALUES(3, 1, 'Fazenda Boi Com a Corda', 'Linha Velha', 1,1); ";
+                "INSERT INTO " + Farm.TABLE + " VALUES(2, 1, 'Fazenda Nova Esperança', 'Linha Nova Baixada', 2,1); " +
+                "INSERT INTO " + Farm.TABLE + " VALUES(3, 1, 'Fazenda Boi Com a Corda', 'Linha Velha', 3,1); ";
+    }
+
+    public static String insertSecondFarm(){
+        return "INSERT INTO " + Farm.TABLE + " VALUES(2, 1, 'Fazenda Nova Esperança', 'Linha Nova Baixada', 2,1);";
     }
 
 
