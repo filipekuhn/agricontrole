@@ -35,7 +35,7 @@
         <activity
             android:name=".AgronomistActivity"
             android:label="@string/title_activity_agronomist"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

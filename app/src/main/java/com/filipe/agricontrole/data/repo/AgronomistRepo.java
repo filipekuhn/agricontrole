@@ -88,9 +88,10 @@ public class AgronomistRepo  {
             agronomist.setEmail(c.getString(4));
             agronomist.setPassword(c.getString(5));
 
+            DatabaseManager.getInstance().closeDatabase();
             return  agronomist;
         }
-
+        DatabaseManager.getInstance().closeDatabase();
         return agronomist;
     }
 

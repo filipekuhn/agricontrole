@@ -34,8 +34,11 @@ public class LoginActivity extends AppCompatActivity {
 
         helper = new AgronomistRepo();
 
-        if(isLogged())
+        if(isLogged()){
             startActivity(new Intent(this, FarmActivity.class));
+            finish();
+        }
+
     }
 
     public void login(View view){
@@ -85,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.commit();
                 }
                 startActivity(new Intent(this, FarmActivity.class));
+                finish();
             }
             else {
               //  Messages.Message(this, getString(R.string.msg_login_incorreto));

@@ -5,6 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context="com.filipe.agricontrole.FarmActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
@@ -23,3 +24,4 @@
         app:menu="@menu/activity_farm_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
+

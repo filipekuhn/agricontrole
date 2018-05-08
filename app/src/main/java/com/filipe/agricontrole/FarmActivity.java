@@ -8,25 +8,33 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.filipe.agricontrole.adapter.FarmAdapter;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
+import com.filipe.agricontrole.data.repo.FarmRepo;
 
 public class FarmActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    AgronomistRepo helper;
+    AgronomistRepo agronomistHelper;
+    FarmRepo farmHelper;
+    RecyclerView recyclerView;
+    FarmAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_farm);
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,7 +52,10 @@ public class FarmActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        helper = new AgronomistRepo();
+        agronomistHelper = new AgronomistRepo();
+
+        configurarRecycler();
+
     }
 
     @Override
@@ -65,7 +76,7 @@ public class FarmActivity extends AppCompatActivity
         //Get Shared preferences to list name, surename and email of the user.
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String email = preferences.getString("email", null);
-        String name = helper.getCurrentUserName(email);
+        String name = agronomistHelper.getCurrentUserName(email);
 
         TextView current_user_name = (TextView) findViewById(R.id.current_user_name);
         current_user_name.setText("Bem Vindo, " + name);
@@ -117,6 +128,20 @@ public class FarmActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void configurarRecycler() {
+        // Configurando o gerenciador de layout para ser uma lista.
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // Adiciona o adapter que irá anexar os objetos à lista.
+        farmHelper = new FarmRepo();
+        adapter = new FarmAdapter(farmHelper.findAll());
+        recyclerView.setAdapter(adapter);
+        //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
     }
 
 

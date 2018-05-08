@@ -2,7 +2,7 @@
     <string name="app_name">Agricontrole</string>
     <string name="app_logout">Sair</string>
     <string name="title_activity_login">Bem Vindo - Agricontrole</string>
-    <string name="action_settings">Configurações</string>
+    <string name="action_settings2">Configurações</string>
 
 
     <!-- Login -->
@@ -60,6 +60,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_agronomist">Perfil do Agrônomo</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="action_settings">Settings</string>
 
 
 </resources>
