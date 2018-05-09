@@ -6,7 +6,9 @@ import android.util.Log;
 
 import com.filipe.agricontrole.app.App;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
+import com.filipe.agricontrole.data.repo.CityRepo;
 import com.filipe.agricontrole.data.repo.FarmRepo;
+import com.filipe.agricontrole.data.repo.StateRepo;
 
 public class DBHelper  extends SQLiteOpenHelper {
     //version number to upgrade database version
@@ -29,6 +31,13 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL(FarmRepo.createTable());
         db.execSQL(FarmRepo.insertTestFarm());
         db.execSQL(FarmRepo.insertSecondFarm());
+        db.execSQL(StateRepo.createTable());
+        db.execSQL(StateRepo.insertStates());
+        db.execSQL(CityRepo.createTable());
+        db.execSQL(CityRepo.insertCities());
+        db.execSQL(CityRepo.insertCities2());
+        db.execSQL(CityRepo.insertCities3());
+        db.execSQL(CityRepo.insertCities4());
         System.out.println(FarmRepo.insertTestFarm());
     }
 

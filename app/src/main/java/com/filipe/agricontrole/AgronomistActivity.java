@@ -32,6 +32,7 @@ public class AgronomistActivity extends AppCompatActivity {
 
         helper = new AgronomistRepo();
 
+        //Method to insert text in the form to update Agronomist data
         insertEditText();
     }
 
@@ -54,24 +55,49 @@ public class AgronomistActivity extends AppCompatActivity {
         String email = edtEmail.getText().toString();
         String password   = edtPassword.getText().toString();
 
-        agronomist.setName(name);
-        agronomist.setSurename(surename);
-        agronomist.setCellphone(cellphone);
-        agronomist.setEmail(email);
-        agronomist.setPassword(password);
+        if((name == null || name.equals("")) || (surename == null || surename.equals(""))
+                || (cellphone == null || cellphone.equals("")) || (email == null || email.equals(""))
+                || (password == null || password.equals(""))){
 
-        if(helper.update(agronomist) > 0){
-            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-                    .setTitleText("Alteração realizada com sucesso")
+            new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Não foi possível concluir o cadastro!")
+                    .setContentText("É necessário preencher todos os campos!")
                     .show();
-            startActivity(new Intent(this, FarmActivity.class));
-        }
-        else{
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Algo deu errado!")
-                    .setContentText("Confira os dados preenchidos!")
+        }else if(!isValidEmail(email)){
+            new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("O campo de email está incorreto")
+                    .setContentText("É necessário incluir um e-mail válido")
                     .show();
         }
+        else {
+            agronomist.setName(name);
+            agronomist.setSurename(surename);
+            agronomist.setCellphone(cellphone);
+            agronomist.setEmail(email);
+            agronomist.setPassword(password);
+
+            if(helper.update(agronomist) > 0){
+                new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Alteração realizada com sucesso")
+                        .show();
+                startActivity(new Intent(this, FarmActivity.class));
+            }
+            else{
+                new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Algo deu errado!")
+                        .setContentText("Confira os dados preenchidos!")
+                        .show();
+            }
+        }
+
+
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null)
+            return false;
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
 }

@@ -21,7 +21,7 @@ public class PlotRepo {
                 + Plot.KEY_FarmId + " INTEGER NOT NULL, "
                 + Plot.KEY_Name + " TEXT NOT NULL, "
                 + Plot.KEY_Area + " DOUBLE NOT NULL, "
-                + "FOREIGN KEY(" + Plot.KEY_FarmId + ") REFERENCES " + Farm.TABLE + "(" + Farm.KEY_FarmId + ");";
+                + "FOREIGN KEY(" + Plot.KEY_FarmId + ") REFERENCES " + Farm.TABLE + "(" + Farm.KEY_FarmId + "));";
     }
 
 
