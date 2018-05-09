@@ -8,6 +8,7 @@ public class Farm {
     public static final String KEY_FarmId = "id";
     public static final String KEY_AgronomisId = "agronomist_id";
     public static final String KEY_Name = "name";
+    public static final String KEY_Owner = "owner";
     public static final String KEY_Address = "address";
     public static final String KEY_City = "city";
     public static final String KEY_State = "state";
@@ -15,6 +16,7 @@ public class Farm {
     private Integer id;
     private Integer agronomistId;
     private String name;
+    private String owner;
     private String address;
     private String city;
     private String state;
@@ -41,6 +43,14 @@ public class Farm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public String getAddress() {

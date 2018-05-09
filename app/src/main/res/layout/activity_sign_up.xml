@@ -91,7 +91,8 @@
             android:textColorHighlight="@android:color/holo_green_dark"
             android:textColorLink="@android:color/holo_green_dark"
             android:textCursorDrawable="@android:color/holo_green_dark"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            android:inputType="textEmailAddress"/>
 
         <TextView
             android:layout_width="match_parent"

@@ -27,6 +27,8 @@ public class FarmAdapter extends RecyclerView.Adapter<FarmHolder> {
     @Override
     public void onBindViewHolder(FarmHolder holder, int position) {
         holder.farmName.setText(farmList.get(position).getName());
+        holder.farmOwner.setText("Proprietário: " + farmList.get(position).getOwner());
+        holder.farmAddress.setText(farmList.get(position).getAddress());
     }
 
     @Override

@@ -24,7 +24,6 @@
     <string name="signUp_txtPassword">Senha:</string>
     <string name="signUp_btnSave">Cadastrar</string>
 
-
     <!-- Validations -->
     <string name="login_valEmail">Usuário obrigatório.</string>
     <string name="login_valPassword">Senha obrigatório.</string>
@@ -52,6 +51,13 @@
     <string name="current_user_name">Nome do Usuário</string>
     <string name="current_user_email">emailusuario@agricontrole.com</string>
 
+    <!-- Farm formulary -->
+    <string name="farm_txtName">Nome da Fazenda:</string>
+    <string name="farm_txtOwner">Proprietário:</string>
+    <string name="farm_txtAddress">Endereço:</string>
+    <string name="farm_txtCity">Cidade:</string>
+    <string name="farm_txtState">Estado:</string>
+    <string name="farm_btnSave">Cadastrar Fazenda</string>
 
     <string name="title_activity_farm">Fazendas</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
