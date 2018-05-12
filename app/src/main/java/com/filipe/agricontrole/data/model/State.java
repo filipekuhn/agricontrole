@@ -34,4 +34,9 @@ public class State {
     public void setUf(String uf) {
         this.uf = uf;
     }
+
+    @Override
+    public String toString() {
+        return this.name;            //To display the name in spinner
+    }
 }

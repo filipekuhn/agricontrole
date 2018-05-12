@@ -16,16 +16,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.filipe.agricontrole.adapter.FarmAdapter;
 import com.filipe.agricontrole.data.model.Agronomist;
+import com.filipe.agricontrole.data.model.City;
 import com.filipe.agricontrole.data.model.Farm;
+import com.filipe.agricontrole.data.model.State;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
+import com.filipe.agricontrole.data.repo.CityRepo;
 import com.filipe.agricontrole.data.repo.FarmRepo;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
+import com.filipe.agricontrole.data.repo.StateRepo;
 
 public class FarmActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,10 +35,12 @@ public class FarmActivity extends AppCompatActivity
     Farm farm;
     AgronomistRepo agronomistHelper;
     FarmRepo farmHelper;
+    State state;
+    City city;
+    StateRepo stateRepo;
+    CityRepo cityRepo;
     RecyclerView recyclerView;
     FarmAdapter adapter;
-
-    private EditText edtName, edtOwner, edtAddress, edtCity, edtState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,7 @@ public class FarmActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FarmActivity.this.setContentView(R.layout.activity_farm_create);
+                createFarmActivity();
             }
         });
 
@@ -64,7 +67,7 @@ public class FarmActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         agronomistHelper = new AgronomistRepo();
-
+        farmHelper = new FarmRepo();
         configurarRecycler();
     }
 
@@ -156,49 +159,15 @@ public class FarmActivity extends AppCompatActivity
 
     }
 
-    public void createFarm(View view){
-        //take the present agronomist logged on by email saved on the shared preferences
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String agronomistEmail = preferences.getString("email", null);
+    public void deleteFarm(View view){
+        int selectedItemPosition = recyclerView.getChildAdapterPosition(view);
+        RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(selectedItemPosition);
 
-        agronomist = agronomistHelper.findByEmail(agronomistEmail);
-
-        edtName = (EditText) findViewById(R.id.farm_edtName);
-        edtOwner = (EditText) findViewById(R.id.farm_edtOwner);
-        edtAddress = (EditText) findViewById(R.id.farm_edtAddress);
-        edtCity = (EditText) findViewById(R.id.farm_edtCity);
-        edtState = (EditText) findViewById(R.id.farm_edtState);
-
-        int agronomistId = agronomist.getId();
-        String name = edtName.getText().toString();
-        String owner = edtOwner.getText().toString();
-        String address = edtAddress.getText().toString();
-        String city = edtCity.getText().toString();
-        String state = edtState.getText().toString();
-
-        farm = new Farm();
-
-        farm.setAgronomistId(agronomistId);
-        farm.setName(name);
-        farm.setOwner(owner);
-        farm.setAddress(address);
-        farm.setCity(city);
-        farm.setState(state);
-
-        if(farmHelper.insert(farm) > 0){
-            new SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE)
-                    .setTitleText("Cadastro realizado com sucesso")
-                    .show();
-            //FarmActivity.this.setContentView(R.layout.activity_farm);
-            startActivity(new Intent(this, FarmActivity.class));
-        }
-        else{
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Algo deu errado!")
-                    .setContentText("Confira os dados preenchidos!")
-                    .show();
-        }
+        farmHelper.delete(selectedItemPosition);
 
     }
 
+    public void createFarmActivity(){
+        startActivity(new Intent(this, CreateFarmActivity.class));
+    }
 }

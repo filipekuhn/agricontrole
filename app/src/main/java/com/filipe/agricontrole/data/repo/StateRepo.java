@@ -1,6 +1,13 @@
 package com.filipe.agricontrole.data.repo;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.filipe.agricontrole.data.DatabaseManager;
 import com.filipe.agricontrole.data.model.State;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StateRepo {
     private final String TAG = StateRepo.class.getSimpleName().toString();
@@ -48,5 +55,43 @@ public class StateRepo {
                 +"(25, 'Sergipe', 'SE'), "
                 +"(26, 'São Paulo', 'SP'), "
                 +"(27, 'Tocantins', 'TO');";
+    }
+
+    public List<State> findAll(){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor c = db.query(State.TABLE, new String[] {}, null, null, null, null, null);
+
+        List<State> stateList = new ArrayList<>();
+        if(c.moveToFirst()){
+            do{
+                State state = new State();
+                stateList.add(state);
+
+                state.setId(c.getInt(0));
+                state.setName(c.getString(1));
+                state.setUf(c.getString(2));
+            }while (c.moveToNext());
         }
+        return stateList;
+    }
+
+    public List<State> findAllNames(){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        Cursor c = db.query(State.TABLE, new String[] {}, null, null, null, null, null);
+
+        List<State> stateList = new ArrayList<State>();
+        if(c.moveToFirst()){
+            do{
+                State state = new State();
+
+                state.setId(c.getInt(0));
+                state.setName(c.getString(1));
+                state.setUf(c.getString(2));
+                stateList.add(state);
+            }while (c.moveToNext());
+        }
+        return stateList;
+    }
+
+
 }

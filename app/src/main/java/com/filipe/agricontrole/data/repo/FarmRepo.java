@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.filipe.agricontrole.data.DatabaseManager;
 import com.filipe.agricontrole.data.model.Agronomist;
+import com.filipe.agricontrole.data.model.City;
 import com.filipe.agricontrole.data.model.Farm;
 
 import java.util.ArrayList;
@@ -29,8 +30,8 @@ public class FarmRepo {
                 + Farm.KEY_Owner + " TEXT NOT NULL, "
                 + Farm.KEY_Address + " TEXT NOT NULL, "
                 + Farm.KEY_City + " INTEGER NOT NULL, "
-                + Farm.KEY_State + " INTEGER NOT NULL, "
-                + "FOREIGN KEY(" + Farm.KEY_AgronomisId + ") REFERENCES " + Agronomist.TABLE + "(" + Agronomist.KEY_AgronomistId + "));";
+                + "FOREIGN KEY(" + Farm.KEY_AgronomisId + ") REFERENCES " + Agronomist.TABLE + "(" + Agronomist.KEY_AgronomistId + "), "
+                + "FOREIGN KEY(" + Farm.KEY_City + ") REFERENCES " + City.TABLE + "(" + City.KEY_CityId + "));";
     }
 
     public int insert(Farm farm){
@@ -43,7 +44,6 @@ public class FarmRepo {
         values.put(Farm.KEY_Owner, farm.getOwner());
         values.put(Farm.KEY_Address, farm.getAddress());
         values.put(Farm.KEY_City, farm.getCity());
-        values.put(Farm.KEY_State, farm.getState());
 
         // Inserting Row
         farmId=(int)db.insert(Farm.TABLE, null, values);
@@ -52,12 +52,19 @@ public class FarmRepo {
         return farmId;
     }
 
+    public void delete(int id ) {
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String query = "DELETE FROM Farm WHERE id = ?";
+        db.rawQuery(query, new String[] {String.valueOf(id)});
+        DatabaseManager.getInstance().closeDatabase();
+    }
+
     public static String insertTestFarm(){
-        return "INSERT INTO " + Farm.TABLE + " VALUES(1, 1, 'Fazenda Rio Bonito', 'Romildo Bolzan','Linha Morangaba', 1, 1);";
+        return "INSERT INTO " + Farm.TABLE + " VALUES(1, 1, 'Fazenda Rio Bonito', 'Romildo Bolzan','Linha Morangaba', 1);";
     }
 
     public static String insertSecondFarm(){
-        return "INSERT INTO " + Farm.TABLE + " VALUES(2, 1, 'Fazenda Nova Esperança', 'Renato Portaluppi','Linha Nova Baixada', 2,1);";
+        return "INSERT INTO " + Farm.TABLE + " VALUES(2, 1, 'Fazenda Nova Esperança', 'Renato Portaluppi','Linha Nova Baixada', 2);";
     }
 
 
@@ -78,8 +85,7 @@ public class FarmRepo {
                 farm.setName(c.getString(2));
                 farm.setOwner(c.getString(3));
                 farm.setAddress(c.getString(4));
-                farm.setCity(c.getString(5));
-                farm.setState(c.getString(6));
+                farm.setCity(c.getInt(5));
             }while (c.moveToNext());
         }
         return farmList;

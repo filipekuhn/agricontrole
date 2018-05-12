@@ -9,7 +9,7 @@ import com.filipe.agricontrole.R;
 
 public class FarmHolder extends RecyclerView.ViewHolder {
 
-    public TextView farmName, farmAddress, farmOwner;
+    public TextView farmName, farmAddress, farmOwner, farmCity;
     public ImageButton btnEdit, btnDelete;
 
     public FarmHolder(View itemView) {
@@ -17,6 +17,7 @@ public class FarmHolder extends RecyclerView.ViewHolder {
         farmName = (TextView) itemView.findViewById(R.id.farmName);
         farmOwner = (TextView) itemView.findViewById(R.id.farmOwner);
         farmAddress = (TextView) itemView.findViewById(R.id.farmAddress);
+        farmCity = (TextView) itemView.findViewById(R.id.farmCity);
         btnEdit = (ImageButton) itemView.findViewById(R.id.btnEdit);
         btnDelete = (ImageButton) itemView.findViewById(R.id.btnDelete);
     }

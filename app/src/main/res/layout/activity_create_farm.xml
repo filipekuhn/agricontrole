@@ -83,11 +83,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/farm_txtCity"
+                android:text="@string/farm_txtState"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/farm_edtCity"
+            <Spinner
+                android:id="@+id/farm_spinnerState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -100,11 +100,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/farm_txtState"
+                android:text="@string/farm_txtCity"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/farm_edtState"
+            <Spinner
+                android:id="@+id/farm_spinnerCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -113,6 +113,8 @@
                 android:textColorLink="@android:color/holo_green_dark"
                 android:textCursorDrawable="@android:color/holo_green_dark"
                 android:textIsSelectable="false" />
+
+
 
             <Button
                 android:id="@+id/signUp_btnSave"

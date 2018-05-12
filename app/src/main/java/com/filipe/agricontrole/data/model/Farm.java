@@ -11,15 +11,13 @@ public class Farm {
     public static final String KEY_Owner = "owner";
     public static final String KEY_Address = "address";
     public static final String KEY_City = "city";
-    public static final String KEY_State = "state";
 
     private Integer id;
     private Integer agronomistId;
     private String name;
     private String owner;
     private String address;
-    private String city;
-    private String state;
+    private Integer city;
 
     public Integer getId() {
         return id;
@@ -61,19 +59,11 @@ public class Farm {
         this.address = address;
     }
 
-    public String getCity() {
+    public Integer getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(Integer city) {
         this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
     }
 }
