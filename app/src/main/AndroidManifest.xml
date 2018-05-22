@@ -40,7 +40,10 @@
         <activity
             android:name=".CreateFarmActivity"
             android:label="@string/title_activity_create_farm"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FarmManagementActivity"
+            android:label="@string/title_activity_farm_management"></activity>
     </application>
 
 </manifest>

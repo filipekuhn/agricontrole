@@ -167,6 +167,10 @@ public class FarmActivity extends AppCompatActivity
 
     }
 
+    public void farmManagement(View view){
+        startActivity(new Intent(this, FarmManagementActivity.class));
+    }
+
     public void createFarmActivity(){
         startActivity(new Intent(this, CreateFarmActivity.class));
     }
