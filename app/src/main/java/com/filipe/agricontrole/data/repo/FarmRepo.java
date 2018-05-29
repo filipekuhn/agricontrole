@@ -3,11 +3,13 @@ package com.filipe.agricontrole.data.repo;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.filipe.agricontrole.data.DatabaseManager;
 import com.filipe.agricontrole.data.model.Agronomist;
 import com.filipe.agricontrole.data.model.City;
 import com.filipe.agricontrole.data.model.Farm;
+import com.filipe.agricontrole.data.model.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +45,7 @@ public class FarmRepo {
         values.put(Farm.KEY_Name, farm.getName());
         values.put(Farm.KEY_Owner, farm.getOwner());
         values.put(Farm.KEY_Address, farm.getAddress());
-        values.put(Farm.KEY_City, farm.getCity());
+        values.put(Farm.KEY_City, farm.getCity().getId());
 
         // Inserting Row
         farmId=(int)db.insert(Farm.TABLE, null, values);
@@ -52,11 +54,20 @@ public class FarmRepo {
         return farmId;
     }
 
-    public void delete(int id ) {
-        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-        String query = "DELETE FROM Farm WHERE id = ?";
-        db.rawQuery(query, new String[] {String.valueOf(id)});
-        DatabaseManager.getInstance().closeDatabase();
+    public boolean delete(int id) {
+        try{
+            SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+            String query = "DELETE FROM farm WHERE id = ?";
+            db.delete(Farm.TABLE, Farm.KEY_FarmId + "=" + id, null);
+
+            return true;
+
+        }catch (Exception e) {
+            Log.d("Erro ao deletar Fazenda", e.toString());
+            return false;
+        }finally {
+            DatabaseManager.getInstance().closeDatabase();
+        }
     }
 
     public static String insertTestFarm(){
@@ -71,23 +82,36 @@ public class FarmRepo {
     public List<Farm> findAllByEmail(String email){
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         //Cursor c = db.query(Farm.TABLE, new String[] {}, null, null, null, null, null);
-        String query = "SELECT * FROM farm INNER JOIN agronomist ON farm.agronomist_id = agronomist.id WHERE agronomist.email = ?";
+        String query = "SELECT f.id, f.agronomist_id, f.name, f.owner, f.address, c.id, c.name, c.state_id, s.id, s.name, s.uf FROM agronomist AS a INNER JOIN farm AS f ON f.agronomist_id = a.id INNER JOIN city as c ON f.city = c.id INNER JOIN state AS s ON c.state_id = s.id WHERE a.email = ?";
         Cursor c = db.rawQuery(query, new String[] {String.valueOf(email)});
 
         List<Farm> farmList = new ArrayList<>();
         if(c.moveToFirst()){
             do{
                 Farm farm = new Farm();
+                City city = new City();
+                State state = new State();
                 farmList.add(farm);
+
 
                 farm.setId(c.getInt(0));
                 farm.setAgronomistId(c.getInt(1));
                 farm.setName(c.getString(2));
                 farm.setOwner(c.getString(3));
                 farm.setAddress(c.getString(4));
-                farm.setCity(c.getInt(5));
+                city.setId(c.getInt(5));
+                city.setName(c.getString(6));
+                city.setState_id(c.getInt(7));
+                state.setId(c.getInt(8));
+                state.setName(c.getString(9));
+                state.setUf(c.getString(10));
+
+                farm.setCity(city);
+                farm.setState(state);
+
             }while (c.moveToNext());
         }
+        DatabaseManager.getInstance().closeDatabase();
         return farmList;
     }
 

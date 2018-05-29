@@ -8,6 +8,7 @@ import com.filipe.agricontrole.app.App;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
 import com.filipe.agricontrole.data.repo.CityRepo;
 import com.filipe.agricontrole.data.repo.FarmRepo;
+import com.filipe.agricontrole.data.repo.PeriodRepo;
 import com.filipe.agricontrole.data.repo.StateRepo;
 
 public class DBHelper  extends SQLiteOpenHelper {
@@ -38,7 +39,7 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL(CityRepo.insertCities2());
         db.execSQL(CityRepo.insertCities3());
         db.execSQL(CityRepo.insertCities4());
-        System.out.println(FarmRepo.insertTestFarm());
+        db.execSQL(PeriodRepo.createTable());
     }
 
     @Override

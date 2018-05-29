@@ -20,5 +20,6 @@ public class FarmHolder extends RecyclerView.ViewHolder {
         farmCity = (TextView) itemView.findViewById(R.id.farmCity);
         btnEdit = (ImageButton) itemView.findViewById(R.id.btnEdit);
         btnDelete = (ImageButton) itemView.findViewById(R.id.btnDelete);
+
     }
 }

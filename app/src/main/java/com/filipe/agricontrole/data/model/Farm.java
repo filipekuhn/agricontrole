@@ -17,7 +17,8 @@ public class Farm {
     private String name;
     private String owner;
     private String address;
-    private Integer city;
+    private City city;
+    private State state;
 
     public Integer getId() {
         return id;
@@ -59,11 +60,19 @@ public class Farm {
         this.address = address;
     }
 
-    public Integer getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(Integer city) {
+    public void setCity(City city) {
         this.city = city;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 }

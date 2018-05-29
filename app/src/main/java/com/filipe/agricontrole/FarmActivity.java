@@ -155,17 +155,24 @@ public class FarmActivity extends AppCompatActivity
         farmHelper = new FarmRepo();
         adapter = new FarmAdapter(farmHelper.findAllByEmail(email));
         recyclerView.setAdapter(adapter);
-        //recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
+        adapter.notifyDataSetChanged();
     }
 
-    public void deleteFarm(View view){
+    /*public void deleteFarm(View view){
         int selectedItemPosition = recyclerView.getChildAdapterPosition(view);
         RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(selectedItemPosition);
 
-        farmHelper.delete(selectedItemPosition);
 
+        //farmHelper.delete(selectedItemPosition);
+        adapter.delete(selectedItemPosition);
+        //setContentView(R.layout.activity_farm);
     }
+
+    public void deleteFarm(View view){
+        RecyclerView.ViewHolder holder = new RecyclerView.ViewHolder(view);
+        holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition()));
+    }*/
 
     public void farmManagement(View view){
         startActivity(new Intent(this, FarmManagementActivity.class));

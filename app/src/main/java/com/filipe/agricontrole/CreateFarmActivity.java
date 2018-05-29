@@ -100,7 +100,7 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
         String name = edtName.getText().toString();
         String owner = edtOwner.getText().toString();
         String address = edtAddress.getText().toString();
-        int city = cityAux.getId();
+        //City city = cityAux.setId(cityAux);
 
         farm = new Farm();
 
@@ -108,10 +108,10 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
         farm.setName(name);
         farm.setOwner(owner);
         farm.setAddress(address);
-        farm.setCity(city);
+        farm.setCity(cityAux);
 
         if(farmHelper.insert(farm) > 0){
-            new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("Ok", new SweetAlertDialog.OnSweetClickListener() {
+            new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
                 @Override
                 public void onClick(SweetAlertDialog sweetAlertDialog) {
                     farmActivity();
