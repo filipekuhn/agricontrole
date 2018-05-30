@@ -3,4 +3,6 @@
     <color name="colorPrimary">#008000</color>
     <color name="colorPrimaryDark">#006400</color>
     <color name="colorAccent">#008000</color>
+    <color name="errorColor">#006400</color>
+    <color name="errorBackGroundColor">#fafafa</color>
 </resources>

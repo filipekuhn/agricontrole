@@ -33,7 +33,7 @@ public class FarmAdapter extends RecyclerView.Adapter<FarmHolder> {
         holder.farmCity.setText("Cidade: " + farmList.get(position).getCity().getName().toString() + " - "
                 + farmList.get(position).getState().getUf().toString());
 
-        holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition()));
+        holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete farm...
     }
 
     @Override
@@ -41,8 +41,7 @@ public class FarmAdapter extends RecyclerView.Adapter<FarmHolder> {
         return farmList != null ? farmList.size() : 0;
     }
 
-
-    public void delete(int position) { //removes the row
+    public void delete(int position) { //remove the row of the recycler and remove the farm from database
         FarmRepo farmRepo = new FarmRepo();
         int index = farmList.get(position).getId();
 
@@ -50,6 +49,5 @@ public class FarmAdapter extends RecyclerView.Adapter<FarmHolder> {
             farmList.remove(position);
             notifyItemRemoved(position);
         }
-
     }
 }

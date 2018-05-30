@@ -38,7 +38,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(this, FarmActivity.class));
             finish();
         }
-
     }
 
     public void login(View view){
@@ -49,14 +48,13 @@ public class LoginActivity extends AppCompatActivity {
 
         if(email == null || email.equals("")){
             validation = false;
-            //edtEmail.setError("È necessário informar o email");
+
             //Messages.Message(this, "O login deve ser informado");
             new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                     .setTitleText("O login deve ser informado")
                     .show();
-        }
 
-        if(password == null || password.equals("")){
+        } else if(password == null || password.equals("")){
             validation = false;
             //edtPassword.setError(getString(R.string.login_valPassword));
             //Messages.Message(this, "A senha deve ser informada");
@@ -67,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(validation)
         {
-            //logar
+            //login
             if(helper.login(email, password))
             {
                 if(ckbConected.isChecked())

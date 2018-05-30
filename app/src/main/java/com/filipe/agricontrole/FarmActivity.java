@@ -19,26 +19,16 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.filipe.agricontrole.adapter.FarmAdapter;
-import com.filipe.agricontrole.data.model.Agronomist;
-import com.filipe.agricontrole.data.model.City;
 import com.filipe.agricontrole.data.model.Farm;
-import com.filipe.agricontrole.data.model.State;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
-import com.filipe.agricontrole.data.repo.CityRepo;
 import com.filipe.agricontrole.data.repo.FarmRepo;
-import com.filipe.agricontrole.data.repo.StateRepo;
 
 public class FarmActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Agronomist agronomist;
     Farm farm;
     AgronomistRepo agronomistHelper;
     FarmRepo farmHelper;
-    State state;
-    City city;
-    StateRepo stateRepo;
-    CityRepo cityRepo;
     RecyclerView recyclerView;
     FarmAdapter adapter;
 
@@ -69,6 +59,8 @@ public class FarmActivity extends AppCompatActivity
         agronomistHelper = new AgronomistRepo();
         farmHelper = new FarmRepo();
         configurarRecycler();
+
+
     }
 
     @Override
@@ -173,6 +165,8 @@ public class FarmActivity extends AppCompatActivity
         RecyclerView.ViewHolder holder = new RecyclerView.ViewHolder(view);
         holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition()));
     }*/
+
+
 
     public void farmManagement(View view){
         startActivity(new Intent(this, FarmManagementActivity.class));

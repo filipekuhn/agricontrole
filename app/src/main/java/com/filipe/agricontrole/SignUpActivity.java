@@ -37,11 +37,11 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void save(View view){
 
-        String name = edtName.getText().toString();
-        String surename = edtSurename.getText().toString();
-        String cellphone = edtCellphone.getText().toString();
-        String email = edtEmail.getText().toString();
-        String password   = edtPassword.getText().toString();
+        String name = edtName.getText().toString().trim();
+        String surename = edtSurename.getText().toString().trim();
+        String cellphone = edtCellphone.getText().toString().trim();
+        String email = edtEmail.getText().toString().trim();
+        String password   = edtPassword.getText().toString().trim();
 
         if((name == null || name.equals("")) || (surename == null || surename.equals(""))
                 || (cellphone == null || cellphone.equals("")) || (email == null || email.equals(""))

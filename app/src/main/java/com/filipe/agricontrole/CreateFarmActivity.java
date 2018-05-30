@@ -33,8 +33,6 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
     Farm farm;
     AgronomistRepo agronomistHelper;
     FarmRepo farmHelper;
-    State state;
-    City city;
     StateRepo stateRepo;
     CityRepo cityRepo;
     RecyclerView recyclerView;
@@ -97,36 +95,44 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
         City cityAux = (City) (spinnerCity).getSelectedItem();
 
         int agronomistId = agronomist.getId();
-        String name = edtName.getText().toString();
-        String owner = edtOwner.getText().toString();
-        String address = edtAddress.getText().toString();
+        String name = edtName.getText().toString().trim();
+        String owner = edtOwner.getText().toString().trim();
+        String address = edtAddress.getText().toString().trim();
         //City city = cityAux.setId(cityAux);
 
-        farm = new Farm();
+        if((name == null || name.equals("") || (owner == null || owner.equals("")) ||
+            address == null || address.equals(""))){
 
-        farm.setAgronomistId(agronomistId);
-        farm.setName(name);
-        farm.setOwner(owner);
-        farm.setAddress(address);
-        farm.setCity(cityAux);
-
-        if(farmHelper.insert(farm) > 0){
-            new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
-                @Override
-                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                    farmActivity();
-                }
-            })
-                    .setTitleText("Cadastro realizado com sucesso")
+            new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Não foi possível concluir o cadastro")
+                    .setContentText("É necessário preencher todos os campos")
                     .show();
-        }
-        else{
-            new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
-                    .setTitleText("Algo deu errado!")
-                    .setContentText("Confira os dados preenchidos!")
-                    .show();
-        }
+        }else{
+            farm = new Farm();
 
+            farm.setAgronomistId(agronomistId);
+            farm.setName(name);
+            farm.setOwner(owner);
+            farm.setAddress(address);
+            farm.setCity(cityAux);
+
+            if(farmHelper.insert(farm) > 0){
+                new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        farmActivity();
+                    }
+                })
+                        .setTitleText("Cadastro realizado com sucesso")
+                        .show();
+            }
+            else{
+                new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Algo deu errado")
+                        .setContentText("Confira os dados preenchidos")
+                        .show();
+            }
+        }
     }
 
 
