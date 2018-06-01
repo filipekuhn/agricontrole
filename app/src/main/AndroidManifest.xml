@@ -43,7 +43,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".FarmManagementActivity"
-            android:label="@string/title_activity_farm_management"></activity>
+            android:label="@string/title_activity_farm_management" />
+        <activity
+            android:name=".CreatePeriodActivity"
+            android:label="@string/title_activity_create_period"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

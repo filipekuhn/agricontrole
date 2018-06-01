@@ -73,6 +73,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_create_period">CreatePeriodActivity</string>
+
+    <!-- Period formulary -->
+    <string name="period_txtName">Nome da Safra</string>
+    <string name="period_txtFarm">Nome da Fazenda</string>
+    <string name="period_btnSave">Cadastrar Safra</string>
 
 
 </resources>

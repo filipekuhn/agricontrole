@@ -9,15 +9,17 @@ import com.filipe.agricontrole.data.repo.AgronomistRepo;
 import com.filipe.agricontrole.data.repo.CityRepo;
 import com.filipe.agricontrole.data.repo.FarmRepo;
 import com.filipe.agricontrole.data.repo.PeriodRepo;
+import com.filipe.agricontrole.data.repo.PlotRepo;
 import com.filipe.agricontrole.data.repo.StateRepo;
+import com.filipe.agricontrole.data.repo.StockRepo;
 
 public class DBHelper  extends SQLiteOpenHelper {
     //version number to upgrade database version
     //each time if you Add, Edit table, you need to change the
     //version number.
     private static final int DATABASE_VERSION =1;
-    // Database Name
-    private static final String DATABASE_NAME = "agricontrole.db";
+
+    private static final String DATABASE_NAME = "agricontrole.db"; // Database Name
     private static final String TAG = DBHelper.class.getSimpleName();
 
     public DBHelper( ) {
@@ -31,7 +33,6 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL(AgronomistRepo.insertAdm());
         db.execSQL(FarmRepo.createTable());
         db.execSQL(FarmRepo.insertTestFarm());
-        db.execSQL(FarmRepo.insertSecondFarm());
         db.execSQL(StateRepo.createTable());
         db.execSQL(StateRepo.insertStates());
         db.execSQL(CityRepo.createTable());
@@ -40,13 +41,17 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL(CityRepo.insertCities3());
         db.execSQL(CityRepo.insertCities4());
         db.execSQL(PeriodRepo.createTable());
+        db.execSQL(PlotRepo.createTable());
+        db.execSQL(PeriodRepo.insertPeriod());
+        db.execSQL(StockRepo.createTable());
+        db.execSQL(StockRepo.insertStock());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d(TAG, String.format("SQLiteDatabase.onUpgrade(%d -> %d)", oldVersion, newVersion));
 
-        // Drop table if existed, all data will be gone!!!
+        // Drop table if existed, all data will be gone
 
     }
 

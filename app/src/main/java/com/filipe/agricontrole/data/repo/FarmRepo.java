@@ -57,7 +57,9 @@ public class FarmRepo {
     public boolean delete(int id) {
         try{
             SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-            String query = "DELETE FROM farm WHERE id = ?";
+            //String query = "DELETE FROM farm WHERE id = ?";
+            String pragma = "PRAGMA foreign_keys = ON;"; //SQLite need to be enable to exclude ON CASCADE
+            db.execSQL(pragma); //Enable to exclude ON CASCADE
             db.delete(Farm.TABLE, Farm.KEY_FarmId + "=" + id, null);
 
             return true;

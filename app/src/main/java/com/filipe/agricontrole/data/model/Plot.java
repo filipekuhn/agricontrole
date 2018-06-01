@@ -5,11 +5,11 @@ public class Plot {
     public static final String TABLE = "farm";
     // Labels Table Columns names
     public static final String KEY_PlotId = "id";
-    public static final String KEY_FarmId = "farm_id";
+    public static final String KEY_PeriodId = "period_id";
     public static final String KEY_Name = "name";
     public static final String KEY_Area = "area";
 
-    private int id, farm_id;
+    private int id, periodId;
     private String name;
     private double area;
 
@@ -21,12 +21,12 @@ public class Plot {
         this.id = id;
     }
 
-    public int getFarm_id() {
-        return farm_id;
+    public int getPeriodId() {
+        return periodId;
     }
 
-    public void setFarm_id(int farm_id) {
-        this.farm_id = farm_id;
+    public void setPeriodId(int farm_id) {
+        this.periodId = periodId;
     }
 
     public String getName() {

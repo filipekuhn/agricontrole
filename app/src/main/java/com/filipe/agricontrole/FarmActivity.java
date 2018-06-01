@@ -16,12 +16,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.filipe.agricontrole.adapter.FarmAdapter;
 import com.filipe.agricontrole.data.model.Farm;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
 import com.filipe.agricontrole.data.repo.FarmRepo;
+import com.filipe.agricontrole.holder.FarmHolder;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class FarmActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +35,10 @@ public class FarmActivity extends AppCompatActivity
     FarmRepo farmHelper;
     RecyclerView recyclerView;
     FarmAdapter adapter;
+    FarmHolder holder;
+
+
+    ImageButton btnView, btnDelete, btnEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +66,7 @@ public class FarmActivity extends AppCompatActivity
 
         agronomistHelper = new AgronomistRepo();
         farmHelper = new FarmRepo();
-        configurarRecycler();
-
+        configureRecycler();
 
     }
 
@@ -135,41 +142,51 @@ public class FarmActivity extends AppCompatActivity
         return true;
     }
 
-    private void configurarRecycler() {
+    private void configureRecycler() {
         // Configurando o gerenciador de layout para ser uma lista.
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView)findViewById(R.id.farmrecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // Adiciona o adapter que irá anexar os objetos à lista.
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String email = preferences.getString("email", null);
+
+
         farmHelper = new FarmRepo();
-        adapter = new FarmAdapter(farmHelper.findAllByEmail(email));
+        adapter = new FarmAdapter(farmHelper.findAllByEmail(email), FarmActivity.this);
+
         recyclerView.setAdapter(adapter);
 
         adapter.notifyDataSetChanged();
     }
 
-    /*public void deleteFarm(View view){
-        int selectedItemPosition = recyclerView.getChildAdapterPosition(view);
-        RecyclerView.ViewHolder viewHolder = recyclerView.findViewHolderForAdapterPosition(selectedItemPosition);
+    public void deleteFarm(int position, int index){
+        farmHelper = new FarmRepo();
+
+        new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                if (farmHelper.delete(index)) {
+                    adapter.farmList.remove(position);
+                    adapter.notifyItemRemoved(position);
+                    sweetAlertDialog.dismissWithAnimation();
+                }
+            }
+        }).setTitleText("Deseja Excluir?").setCancelButton("Cancelar", new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.cancel();
+            }
+        }).show();
 
 
-        //farmHelper.delete(selectedItemPosition);
-        adapter.delete(selectedItemPosition);
-        //setContentView(R.layout.activity_farm);
     }
 
-    public void deleteFarm(View view){
-        RecyclerView.ViewHolder holder = new RecyclerView.ViewHolder(view);
-        holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition()));
-    }*/
-
-
-
-    public void farmManagement(View view){
-        startActivity(new Intent(this, FarmManagementActivity.class));
+   public void farmManagement(int index){
+        Intent intent = new Intent(this, FarmManagementActivity.class);
+        intent.putExtra("farmId", index);
+        startActivity(intent);
     }
 
     public void createFarmActivity(){

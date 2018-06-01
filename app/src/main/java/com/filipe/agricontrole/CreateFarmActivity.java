@@ -17,10 +17,12 @@ import com.filipe.agricontrole.data.model.Agronomist;
 import com.filipe.agricontrole.data.model.City;
 import com.filipe.agricontrole.data.model.Farm;
 import com.filipe.agricontrole.data.model.State;
+import com.filipe.agricontrole.data.model.Stock;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
 import com.filipe.agricontrole.data.repo.CityRepo;
 import com.filipe.agricontrole.data.repo.FarmRepo;
 import com.filipe.agricontrole.data.repo.StateRepo;
+import com.filipe.agricontrole.data.repo.StockRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +33,10 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
 
     Agronomist agronomist;
     Farm farm;
+    Stock stock;
     AgronomistRepo agronomistHelper;
     FarmRepo farmHelper;
+    StockRepo stockHelper;
     StateRepo stateRepo;
     CityRepo cityRepo;
     RecyclerView recyclerView;
@@ -58,6 +62,7 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
         fillStateSpinner();
         agronomistHelper = new AgronomistRepo();
         farmHelper = new FarmRepo();
+        stockHelper = new StockRepo();
     }
 
     @Override
@@ -108,7 +113,7 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
                     .setContentText("É necessário preencher todos os campos")
                     .show();
         }else{
-            farm = new Farm();
+            farm = new Farm(); //Initiate a new Farm
 
             farm.setAgronomistId(agronomistId);
             farm.setName(name);
@@ -116,15 +121,23 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
             farm.setAddress(address);
             farm.setCity(cityAux);
 
-            if(farmHelper.insert(farm) > 0){
-                new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        farmActivity();
-                    }
-                })
-                        .setTitleText("Cadastro realizado com sucesso")
-                        .show();
+            int farmId = farmHelper.insert(farm);
+
+            if(farmId > 0) {
+                stock = new Stock(); //Initiate a new Stock for the farm with the ID created in the farm creation.
+
+                stock.setFarmId(farmId);
+                if (stockHelper.insert(stock) > 0) {
+                    new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            farmActivity();
+                        }
+                    })
+                            .setTitleText("Cadastro realizado com sucesso")
+                            .show();
+
+                }
             }
             else{
                 new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)

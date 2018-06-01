@@ -26,7 +26,11 @@ public class PeriodRepo {
                 + Period.KEY_PeriodId  + "  INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Period.KEY_PeriodName + " TEXT NOT NULL, "
                 + Period.KEY_FarmId + " INTEGER NOT NULL, "
-                + "FOREIGN KEY(" + Period.KEY_FarmId + ") REFERENCES " + Farm.TABLE + "(" + Farm.KEY_FarmId + "));";
+                + "FOREIGN KEY(" + Period.KEY_FarmId + ") REFERENCES " + Farm.TABLE + "(" + Farm.KEY_FarmId + ") ON DELETE CASCADE);";
+    }
+
+    public static String insertPeriod(){
+        return "INSERT INTO period (id, name, farm_id) VALUES (1, '2016-2017', 1);";
     }
 
     public int insert(Period period){
@@ -53,7 +57,7 @@ public class PeriodRepo {
     }
 
 
-    public List<Period> findAllByFarmId(String farm){
+    public List<Period> findAllByFarmId(int farm){
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         //Cursor c = db.query(Farm.TABLE, new String[] {}, null, null, null, null, null);
         String query = "SELECT * FROM period WHERE farm_id = ?";
