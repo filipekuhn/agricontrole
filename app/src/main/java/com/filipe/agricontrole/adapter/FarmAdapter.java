@@ -64,8 +64,9 @@ public class FarmAdapter extends RecyclerView.Adapter<FarmHolder> {
 
     public void viewFarm(int position){ //Get the id from farm to open the farm management activity
         int index = farmList.get(position).getId();
+        String name = farmList.get(position).getName();
 
-        farmActivity.farmManagement(index);
+        farmActivity.farmManagement(index, name);
 
     }
 }

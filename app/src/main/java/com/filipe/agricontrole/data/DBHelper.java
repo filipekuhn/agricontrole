@@ -41,8 +41,9 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL(CityRepo.insertCities3());
         db.execSQL(CityRepo.insertCities4());
         db.execSQL(PeriodRepo.createTable());
-        db.execSQL(PlotRepo.createTable());
         db.execSQL(PeriodRepo.insertPeriod());
+        db.execSQL(PlotRepo.createTable());
+        db.execSQL(PlotRepo.insertPlot());
         db.execSQL(StockRepo.createTable());
         db.execSQL(StockRepo.insertStock());
     }

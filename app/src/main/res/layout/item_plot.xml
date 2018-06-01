@@ -32,13 +32,37 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/periodName"
+                android:id="@+id/plotPeriod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginTop="4dp"
-                android:text="Safra"
+                android:text="Safra:"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/plotName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:text="Talhão"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/plotArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginTop="4dp"
+                android:text="Area"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +80,6 @@
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
                     android:src="@android:drawable/ic_menu_view"
-                    android:onClick="farmManagement"
                     app:layout_constraintRight_toLeftOf="@+id/btnEdit"
                     app:layout_constraintTop_toTopOf="parent" />
 

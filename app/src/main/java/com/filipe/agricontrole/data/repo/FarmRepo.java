@@ -47,6 +47,7 @@ public class FarmRepo {
         values.put(Farm.KEY_Address, farm.getAddress());
         values.put(Farm.KEY_City, farm.getCity().getId());
 
+        System.out.println(values);
         // Inserting Row
         farmId=(int)db.insert(Farm.TABLE, null, values);
         DatabaseManager.getInstance().closeDatabase();

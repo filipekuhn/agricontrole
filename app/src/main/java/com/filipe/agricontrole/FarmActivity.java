@@ -183,9 +183,10 @@ public class FarmActivity extends AppCompatActivity
 
     }
 
-   public void farmManagement(int index){
+   public void farmManagement(int index, String name){
         Intent intent = new Intent(this, FarmManagementActivity.class);
         intent.putExtra("farmId", index);
+        intent.putExtra("farmName", name);
         startActivity(intent);
     }
 

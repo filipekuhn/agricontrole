@@ -51,7 +51,7 @@
     <string name="current_user_name">Nome do Usuário</string>
     <string name="current_user_email">emailusuario@agricontrole.com</string>
 
-    <!-- Farm formulary -->
+    <!-- Farm form -->
     <string name="farm_txtName">Nome da Fazenda:</string>
     <string name="farm_txtOwner">Proprietário:</string>
     <string name="farm_txtAddress">Endereço:</string>
@@ -75,10 +75,20 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_create_period">CreatePeriodActivity</string>
 
-    <!-- Period formulary -->
+    <!-- Period form -->
     <string name="period_txtName">Nome da Safra</string>
     <string name="period_txtFarm">Nome da Fazenda</string>
     <string name="period_btnSave">Cadastrar Safra</string>
+    <string name="title_activity_create_plot">CreatePlotActivity</string>
+
+    <!-- Plot form -->
+    <string name="plot_txtName">Nome do Talhão</string>
+    <string name="plot_txtArea">Área do Talhão</string>
+    <string name="plot_btnSave">Cadastrar Talhão</string>
+
+    <!-- Farm Management -->
+    <string name="title_stock">Estoque</string>
+    <string name="title_period">Safras</string>
 
 
 </resources>

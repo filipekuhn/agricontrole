@@ -4,19 +4,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.filipe.agricontrole.FarmManagementActivity;
 import com.filipe.agricontrole.R;
 import com.filipe.agricontrole.data.model.Period;
-import com.filipe.agricontrole.data.repo.PeriodRepo;
 import com.filipe.agricontrole.holder.PeriodHolder;
 
 import java.util.List;
 
 public class PeriodAdapter extends RecyclerView.Adapter<PeriodHolder> {
 
-    private final List<Period> periodList;
+    public List<Period> periodList;
+    FarmManagementActivity farmManagementActivity;
 
-    public PeriodAdapter(List<Period> periodList) {
+    public PeriodAdapter(List<Period> periodList, FarmManagementActivity farmManagementActivity) {
         this.periodList = periodList;
+        this.farmManagementActivity = farmManagementActivity;
     }
 
     @Override
@@ -28,9 +30,10 @@ public class PeriodAdapter extends RecyclerView.Adapter<PeriodHolder> {
     @Override
     public void onBindViewHolder(PeriodHolder holder, int position) {
         holder.periodName.setText(periodList.get(position).getName());
-        //holder.farmCity.setText("Cidade: " + farmList.get(position).getCity().getName().toString() + " - "
-            //    + farmList.get(position).getState().getUf().toString());
-        //holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete farm...
+
+        holder.btnView.setOnClickListener(view -> viewPlot(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
+        holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
+        holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete period from farm
     }
 
     @Override
@@ -38,13 +41,22 @@ public class PeriodAdapter extends RecyclerView.Adapter<PeriodHolder> {
         return periodList != null ? periodList.size() : 0;
     }
 
-    public void delete(int position) { //remove the row of the recycler and remove the farm from database
-        PeriodRepo periodRepo = new PeriodRepo();
+    public void delete(int position){
         int index = periodList.get(position).getId();
 
-        //if(periodRepo.delete(index)){
-            periodList.remove(position);
-            notifyItemRemoved(position);
-        //}
+        farmManagementActivity.deletePeriod(position, index);
+    }
+
+    public void update(int position){
+        int index = periodList.get(position).getId();
+
+        farmManagementActivity.updatePeriod(position, index);
+    }
+
+    public void viewPlot(int position){
+        int index = periodList.get(position).getId();
+        String name = periodList.get(position).getName();
+
+        farmManagementActivity.plotActivity(index, name);
     }
 }

@@ -36,7 +36,9 @@
             android:name=".AgronomistActivity"
             android:label="@string/title_activity_agronomist"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PlotActivity" />
+        <activity
+            android:name=".PlotActivity"
+            android:label="Talhões"/>
         <activity
             android:name=".CreateFarmActivity"
             android:label="@string/title_activity_create_farm"
@@ -47,6 +49,10 @@
         <activity
             android:name=".CreatePeriodActivity"
             android:label="@string/title_activity_create_period"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreatePlotActivity"
+            android:label="@string/title_activity_create_plot"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

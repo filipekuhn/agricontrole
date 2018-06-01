@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreatePlotActivity">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        tools:context="com.filipe.agricontrole.CreatePeriodActivity">
+        tools:context="com.filipe.agricontrole.CreatePlotActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,11 +35,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/period_txtName"
+                android:text="@string/plot_txtName"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/period_edtName"
+                android:id="@+id/plot_edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -49,11 +52,23 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/period_txtFarm"
+                android:text="@string/plot_txtArea"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/period_edtFarm"
+                android:id="@+id/plot_edtArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@android:color/holo_green_dark"
+                android:textColorHighlight="@android:color/holo_green_dark"
+                android:textColorLink="@android:color/holo_green_dark"
+                android:textCursorDrawable="@android:color/holo_green_dark"
+                android:textIsSelectable="false"
+                android:inputType="numberDecimal"/>
+
+            <EditText
+                android:id="@+id/plot_edtPeriod"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -65,13 +80,13 @@
                 android:editable="false"/>
 
             <Button
-                android:id="@+id/period_btnSave"
+                android:id="@+id/plot_btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@android:color/holo_green_dark"
-                android:onClick="createPeriod"
-                android:text="@string/period_btnSave"
+                android:onClick="createPlot"
+                android:text="@string/plot_btnSave"
                 android:textColor="#FFF"
                 android:textStyle="bold" />
 
@@ -79,4 +94,4 @@
 
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

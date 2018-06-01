@@ -3,6 +3,7 @@ package com.filipe.agricontrole.data.repo;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.filipe.agricontrole.data.DatabaseManager;
 import com.filipe.agricontrole.data.model.Farm;
@@ -39,7 +40,7 @@ public class PeriodRepo {
         ContentValues values = new ContentValues();
         values.put(Period.KEY_PeriodId, period.getId());
         values.put(Period.KEY_PeriodName, period.getName());
-        values.put(Period.KEY_FarmId, period.getFarmId());
+        values.put(Period.KEY_FarmId, period.getFarm().getId());
 
 
         // Inserting Row
@@ -49,31 +50,42 @@ public class PeriodRepo {
         return periodId;
     }
 
-    public void delete(int id) {
-        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-        String query = "DELETE FROM period WHERE id = ?";
-        db.rawQuery(query, new String[] {String.valueOf(id)});
-        DatabaseManager.getInstance().closeDatabase();
+    public boolean delete(int id) {
+        try{
+            SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+            //String query = "DELETE FROM farm WHERE id = ?";
+            String pragma = "PRAGMA foreign_keys = ON;"; //SQLite need to be enable to exclude ON CASCADE
+            db.execSQL(pragma); //Enable to exclude ON CASCADE
+            db.delete(Period.TABLE, Period.KEY_PeriodId + "=" + id, null);
+
+            return true;
+        }catch (Exception e) {
+            Log.d("Erro ao deletar Fazenda", e.toString());
+            return false;
+        }finally {
+            DatabaseManager.getInstance().closeDatabase();
+        }
     }
 
 
-    public List<Period> findAllByFarmId(int farm){
+    public List<Period> findAllByFarmId(int farmId){
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         //Cursor c = db.query(Farm.TABLE, new String[] {}, null, null, null, null, null);
         String query = "SELECT * FROM period WHERE farm_id = ?";
-        Cursor c = db.rawQuery(query, new String[] {String.valueOf(farm)});
+        Cursor c = db.rawQuery(query, new String[] {String.valueOf(farmId)});
 
         List<Period> periodList = new ArrayList<>();
         if(c.moveToFirst()){
             do{
-                Period period = new Period();
+                period = new Period();
+                Farm farm = new Farm();
                 periodList.add(period);
 
                 period.setId(c.getInt(0));
                 period.setName(c.getString(1));
-                period.setFarmId(c.getInt(2));
+                farm.setId(c.getInt(2));
 
-
+                period.setFarm(farm);
             }while (c.moveToNext());
         }
         return periodList;

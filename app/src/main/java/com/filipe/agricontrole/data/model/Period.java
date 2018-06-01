@@ -10,7 +10,7 @@ public class Period {
     public static final String KEY_FarmId = "farm_id";
 
     private Integer id;
-    private Integer farmId;
+    private Farm farm;
     private String name;
 
     public Integer getId() {
@@ -21,12 +21,12 @@ public class Period {
         this.id = id;
     }
 
-    public Integer getFarmId() {
-        return farmId;
+    public Farm getFarm() {
+        return farm;
     }
 
-    public void setFarmId(Integer farmId) {
-        this.farmId = farmId;
+    public void setFarm(Farm farm) {
+        this.farm = farm;
     }
 
     public String getName() {
