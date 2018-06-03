@@ -40,7 +40,7 @@ public class PlotAdapter extends RecyclerView.Adapter<PlotHolder> {
         numberAsString.replace(".", ",");
         holder.plotArea.setText("Área: " +  numberAsString + " ha");
 
-        //holder.btnView.setOnClickListener(view -> viewPlot(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
+        holder.btnView.setOnClickListener(view -> viewPlot(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
         //holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
         holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete period from farm
     }
@@ -54,5 +54,12 @@ public class PlotAdapter extends RecyclerView.Adapter<PlotHolder> {
         int index = plotList.get(position).getId();
 
         plotActivity.deletePlot(position, index);
+    }
+
+    public void viewPlot(int position){
+        int index = plotList.get(position).getId();
+        String plotName = plotList.get(position).getName();
+
+        plotActivity.plantingActivity(index, plotName);
     }
 }

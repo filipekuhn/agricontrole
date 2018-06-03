@@ -6,12 +6,16 @@ import android.util.Log;
 
 import com.filipe.agricontrole.app.App;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
+import com.filipe.agricontrole.data.repo.CategoryRepo;
 import com.filipe.agricontrole.data.repo.CityRepo;
 import com.filipe.agricontrole.data.repo.FarmRepo;
 import com.filipe.agricontrole.data.repo.PeriodRepo;
+import com.filipe.agricontrole.data.repo.PlantingRepo;
 import com.filipe.agricontrole.data.repo.PlotRepo;
+import com.filipe.agricontrole.data.repo.ProductRepo;
 import com.filipe.agricontrole.data.repo.StateRepo;
 import com.filipe.agricontrole.data.repo.StockRepo;
+import com.filipe.agricontrole.data.repo.UnitTypeRepo;
 
 public class DBHelper  extends SQLiteOpenHelper {
     //version number to upgrade database version
@@ -40,12 +44,24 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL(CityRepo.insertCities2());
         db.execSQL(CityRepo.insertCities3());
         db.execSQL(CityRepo.insertCities4());
+        db.execSQL(StockRepo.createTable());
+        db.execSQL(StockRepo.insertStock());
         db.execSQL(PeriodRepo.createTable());
         db.execSQL(PeriodRepo.insertPeriod());
         db.execSQL(PlotRepo.createTable());
         db.execSQL(PlotRepo.insertPlot());
-        db.execSQL(StockRepo.createTable());
-        db.execSQL(StockRepo.insertStock());
+        db.execSQL(PlantingRepo.createTable());
+        db.execSQL(UnitTypeRepo.createTable());
+        db.execSQL(UnitTypeRepo.initialUnitType());
+        db.execSQL(UnitTypeRepo.initalUnitType2());
+        db.execSQL(CategoryRepo.createTable());
+        db.execSQL(CategoryRepo.initialCategory());
+        db.execSQL(CategoryRepo.initialCategory2());
+        db.execSQL(CategoryRepo.initialCategory3());
+        db.execSQL(CategoryRepo.initialCategory4());
+        db.execSQL(ProductRepo.createTable());
+        db.execSQL(ProductRepo.insertInitialProduct());
+
     }
 
     @Override

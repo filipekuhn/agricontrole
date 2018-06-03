@@ -38,7 +38,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PlotActivity"
-            android:label="Talhões"/>
+            android:label="Talhões" />
         <activity
             android:name=".CreateFarmActivity"
             android:label="@string/title_activity_create_farm"
@@ -53,6 +53,34 @@
         <activity
             android:name=".CreatePlotActivity"
             android:label="@string/title_activity_create_plot"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PlantingActivity"
+            android:label="@string/title_activity_planting"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CreatePlantingActivity"
+            android:label="@string/title_activity_create_planting"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProductActivity"
+            android:label="@string/title_activity_product"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CreateProductActivity"
+            android:label="@string/title_activity_create_product"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

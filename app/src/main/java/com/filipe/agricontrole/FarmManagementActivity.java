@@ -74,7 +74,7 @@ public class FarmManagementActivity extends AppCompatActivity {
 
         farmId = getIntent().getExtras().getInt("farmId");
         farmName = getIntent().getExtras().getString("farmName");
-        configureStockRecycler(farmId);
+        configurePeriodRecycler(farmId);
 
         fab = (FloatingActionButton) findViewById(R.id.createPeriod);
     }
@@ -101,7 +101,7 @@ public class FarmManagementActivity extends AppCompatActivity {
 
         // Adiciona o adapter que irá anexar os objetos à lista.
         stockHelper = new StockRepo();
-        stockAdapter = new StockAdapter(stockHelper.findAllByFarmId(index));
+        stockAdapter = new StockAdapter(stockHelper.findAllByFarmId(index), FarmManagementActivity.this);
         recyclerView.setAdapter(stockAdapter);
 
         stockAdapter.notifyDataSetChanged();
@@ -142,6 +142,16 @@ public class FarmManagementActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PlotActivity.class);
         intent.putExtra("periodId", index);
         intent.putExtra("periodName", periodName);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
+        startActivity(intent);
+    }
+
+    public void productActivity(int index){
+        Intent intent = new Intent(this, ProductActivity.class);
+        intent.putExtra("stockId", index);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
         startActivity(intent);
     }
 }

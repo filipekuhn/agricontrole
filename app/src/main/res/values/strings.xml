@@ -83,12 +83,33 @@
 
     <!-- Plot form -->
     <string name="plot_txtName">Nome do Talhão</string>
-    <string name="plot_txtArea">Área do Talhão</string>
+    <string name="plot_txtArea">Área do Talhão (ha)</string>
+    <string name="plot_txtPeriod">Safra</string>
     <string name="plot_btnSave">Cadastrar Talhão</string>
 
     <!-- Farm Management -->
     <string name="title_stock">Estoque</string>
     <string name="title_period">Safras</string>
 
+
+    <!-- Planting -->
+    <string name="planting_txtType">Tipo de Plantio</string>
+    <string name="planting_txtDate">Data de Plantio</string>
+    <string name="planting_txtPopulation">População</string>
+    <string name="planting_txtEmergencyDate">Data de Emergência</string>
+    <string name="planting_txtHarvestDate">Data de Colheita</string>
+    <string name="planting_btnSave">Cadastrar Plantio</string>
+    <string name="typeHint">Milho</string>
+    <string name="dateHint">01012000</string>
+    <string name="populationHint">12.45</string>
+    <string name="planting_population">População: N/D</string>
+    <string name="planting_emergencyDate">Data de Emergência: N/D</string>
+    <string name="planting_harvestDate">Data de Colheita: N/D</string>
+    <string name="title_activity_planting">Plantios</string>
+    <string name="title_activity_create_planting">Cadastro de Plantio</string>
+
+    <!-- Product -->
+    <string name="title_activity_product">Produtos</string>
+    <string name="title_activity_create_product">CreateProductActivity</string>
 
 </resources>

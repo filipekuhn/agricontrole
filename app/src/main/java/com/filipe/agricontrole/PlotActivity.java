@@ -15,8 +15,8 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class PlotActivity extends AppCompatActivity {
 
-    private int periodId;
-    private String periodName;
+    private int periodId, farmId;
+    private String periodName, farmName;
     private RecyclerView recyclerView;
     private PlotRepo plotHelper;
     private PlotAdapter plotAdapter;
@@ -38,6 +38,8 @@ public class PlotActivity extends AppCompatActivity {
 
         periodId = getIntent().getExtras().getInt("periodId");
         periodName = getIntent().getExtras().getString("periodName");
+        farmId = getIntent().getExtras().getInt("farmId");
+        farmName = getIntent().getExtras().getString("farmName");
         configurePlotRecycler(periodId);
 
     }
@@ -56,10 +58,24 @@ public class PlotActivity extends AppCompatActivity {
         plotAdapter.notifyDataSetChanged();
     }
 
-    public void createPlotActivity(){
+    private void createPlotActivity(){
         Intent intent = new Intent(this, CreatePlotActivity.class);
         intent.putExtra("periodId", periodId);
         intent.putExtra("periodName", periodName);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
+        startActivity(intent);
+        finish();
+    }
+
+    public void plantingActivity(int index, String plotName){
+        Intent intent = new Intent(this, PlantingActivity.class);
+        intent.putExtra("plotId", index);
+        intent.putExtra("plotName", plotName);
+        intent.putExtra("periodId", periodId);
+        intent.putExtra("periodName", periodName);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
         startActivity(intent);
     }
 

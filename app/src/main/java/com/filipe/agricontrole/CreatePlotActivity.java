@@ -22,8 +22,8 @@ public class CreatePlotActivity extends AppCompatActivity {
     private Plot plot;
     private Period period;
 
-    private int periodId;
-    private String periodName;
+    private int periodId, farmId;
+    private String periodName, farmName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,8 @@ public class CreatePlotActivity extends AppCompatActivity {
 
         periodId = getIntent().getExtras().getInt("periodId");
         periodName = getIntent().getExtras().getString("periodName");
+        farmId = getIntent().getExtras().getInt("farmId");
+        farmName = getIntent().getExtras().getString("farnName");
         edtPeriod.setText(periodName);
     }
 
@@ -93,6 +95,8 @@ public class CreatePlotActivity extends AppCompatActivity {
         Intent intent = new Intent(this, PlotActivity.class);
         intent.putExtra("periodId", periodId);
         intent.putExtra("periodName", periodName);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
         startActivity(intent);
         finish();
     }

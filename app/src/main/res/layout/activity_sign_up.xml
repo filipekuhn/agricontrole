@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
     tools:context="com.filipe.agricontrole.SignUpActivity">
 
     <LinearLayout
@@ -64,7 +65,7 @@
             android:text="@string/signUp_txtCellphone"
             android:textStyle="bold" />
 
-        <EditText
+        <br.com.sapereaude.maskedEditText.MaskedEditText
             android:id="@+id/signUp_edtCellphone1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +75,9 @@
             android:textColorHighlight="@android:color/holo_green_dark"
             android:textColorLink="@android:color/holo_green_dark"
             android:textCursorDrawable="@android:color/holo_green_dark"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            mask:allowed_chars="1234567890"
+            mask:mask="+55(##)#####-####"/>
 
         <TextView
             android:layout_width="match_parent"

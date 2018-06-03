@@ -1,5 +1,6 @@
 package com.filipe.agricontrole;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -63,7 +64,7 @@ public class CreatePeriodActivity extends AppCompatActivity {
                 new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        sweetAlertDialog.dismiss();
+                        finish();
                     }
                 })
                         .setTitleText("Cadastro realizado com sucesso")
@@ -76,5 +77,12 @@ public class CreatePeriodActivity extends AppCompatActivity {
                         .show();
             }
         }
+    }
+
+    public void farmManagementActivity(){
+        Intent intent = new Intent(this, FarmManagementActivity.class);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
+        startActivity(intent);
     }
 }

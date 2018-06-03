@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     AgronomistRepo helper;
     CheckBox ckbConected;
 
-    private static final String PREFERENCE_NAME  = "LoginActivityPreferences";
+    //private static final String PREFERENCE_NAME  = "LoginActivityPreferences";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
