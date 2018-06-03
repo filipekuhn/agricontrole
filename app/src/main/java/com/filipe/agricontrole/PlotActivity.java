@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.filipe.agricontrole.adapter.PlotAdapter;
@@ -25,8 +26,9 @@ public class PlotActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plot);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_plot);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.createPlot);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -45,12 +47,12 @@ public class PlotActivity extends AppCompatActivity {
     }
 
     private void configurePlotRecycler(int index) {
-        // Configurando o gerenciador de layout para ser uma lista.
+        // Configure the layout manager to be a list
         recyclerView = (RecyclerView)findViewById(R.id.plotRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // Adiciona o adapter que irá anexar os objetos à lista.
+        // Add the adapter that include the objects to the list.
         plotHelper = new PlotRepo();
         plotAdapter = new PlotAdapter(plotHelper.findAllByPeriodId(index), PlotActivity.this);
         recyclerView.setAdapter(plotAdapter);

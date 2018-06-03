@@ -72,6 +72,7 @@ public class StateRepo {
                 state.setUf(c.getString(2));
             }while (c.moveToNext());
         }
+        DatabaseManager.getInstance().closeDatabase();
         return stateList;
     }
 

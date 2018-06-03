@@ -3,6 +3,7 @@ package com.filipe.agricontrole.data.repo;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.filipe.agricontrole.data.DatabaseManager;
 import com.filipe.agricontrole.data.model.Category;
@@ -41,7 +42,7 @@ public class ProductRepo {
     }
 
     public static String insertInitialProduct(){
-        return "INSERT INTO " + Product.TABLE + " VALUES (1, 1, 1, 'Forth Fungicida', 0.03, '30-07-2020');";
+        return "INSERT INTO " + Product.TABLE + " VALUES (1, 1, 1, 'Forth Fungicida', 0.03, '30/07/2020');";
     }
 
     public int insert(Product product){
@@ -51,16 +52,30 @@ public class ProductRepo {
         values.put(Product.KEY_StockId, product.getStock().getId());
         values.put(Product.KEY_CategoryId, product.getCategory().getId());
         values.put(Product.KEY_Name, product.getName());
+        values.put(Product.KEY_Quantity, product.getQuantity());
         values.put(Product.KEY_ExpirationDate, product.getExpiration_date());
-
-        if(product.getQuantity() != 0.0)
-            values.put(Product.KEY_Quantity, product.getQuantity());
 
         // Inserting Row
         productId=(int)db.insert(Product.TABLE, null, values);
         DatabaseManager.getInstance().closeDatabase();
 
         return productId;
+    }
+
+    public boolean delete(int id) {
+        try{
+            SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+            String pragma = "PRAGMA foreign_keys = ON;"; //SQLite need to be enable to exclude ON CASCADE
+            db.execSQL(pragma); //Enable to exclude ON CASCADE
+            db.delete(Product.TABLE, Product.KEY_ProductId + "=" + id, null);
+
+            return true;
+        }catch (Exception e) {
+            Log.d("Erro ao deletar Produto", e.toString());
+            return false;
+        }finally {
+            DatabaseManager.getInstance().closeDatabase();
+        }
     }
 
     public List<Product> findAllByStockId(int stockId){

@@ -29,7 +29,7 @@ public class PeriodAdapter extends RecyclerView.Adapter<PeriodHolder> {
 
     @Override
     public void onBindViewHolder(PeriodHolder holder, int position) {
-        holder.periodName.setText(periodList.get(position).getName());
+        holder.periodName.setText("Safra: " + periodList.get(position).getName());
 
         holder.btnView.setOnClickListener(view -> viewPlot(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
         holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period

@@ -34,4 +34,8 @@ public class Category {
     public void setUnitType(UnitType unitType) {
         this.unitType = unitType;
     }
+
+    public String toString() {
+        return this.name;            //To display the name in spinner
+    }
 }

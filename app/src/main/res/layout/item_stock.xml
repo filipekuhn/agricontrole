@@ -46,7 +46,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="right"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -59,27 +59,6 @@
                     android:onClick="farmManagement"
                     app:layout_constraintRight_toLeftOf="@+id/btnEdit"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/btnEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginTop="4dp"
-                    android:src="@android:drawable/ic_menu_edit"
-                    app:layout_constraintRight_toLeftOf="@+id/btnDelete"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/btnDelete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="4dp"
-                    android:layout_marginTop="4dp"
-                    android:src="@android:drawable/ic_delete"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:onClick="deleteFarm"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

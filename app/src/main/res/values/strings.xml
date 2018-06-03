@@ -111,5 +111,11 @@
     <!-- Product -->
     <string name="title_activity_product">Produtos</string>
     <string name="title_activity_create_product">CreateProductActivity</string>
+    <string name="product_txtName">Nome do Produto</string>
+    <string name="product_txtQuantity">Quantidade</string>
+    <string name="product_txtExpirationDate">Data de Validade</string>
+    <string name="product_txtCategory">Categoria</string>
+    <string name="product_btnSave">Cadastrar Produto</string>
+
 
 </resources>

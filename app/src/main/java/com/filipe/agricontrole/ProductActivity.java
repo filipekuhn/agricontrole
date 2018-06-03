@@ -13,6 +13,8 @@ import com.filipe.agricontrole.adapter.ProductAdapter;
 import com.filipe.agricontrole.data.model.Product;
 import com.filipe.agricontrole.data.repo.ProductRepo;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class ProductActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -28,6 +30,7 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar.setLogo(R.drawable.ic_fuel);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabCreateProduct);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +67,26 @@ public class ProductActivity extends AppCompatActivity {
         intent.putExtra("farmName", farmName);
         startActivity(intent);
         finish();
+    }
+
+    public void deleteProduct(int position, int index){
+        productHelper = new ProductRepo();
+
+        new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                if (productHelper.delete(index)) {
+                    adapter.productList.remove(position);
+                    adapter.notifyItemRemoved(position);
+                    sweetAlertDialog.dismissWithAnimation();
+                }
+            }
+        }).setTitleText("Deseja Excluir?").setCancelButton("Cancelar", new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.cancel();
+            }
+        }).show();
     }
 
 }

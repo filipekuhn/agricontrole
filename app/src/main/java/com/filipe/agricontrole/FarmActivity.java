@@ -143,15 +143,14 @@ public class FarmActivity extends AppCompatActivity
     }
 
     private void configureRecycler() {
-        // Configurando o gerenciador de layout para ser uma lista.
+        // Configure the layout manager to be a list
         recyclerView = (RecyclerView)findViewById(R.id.farmrecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // Adiciona o adapter que irá anexar os objetos à lista.
+        // Add the adapter that include the objects to the list.
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String email = preferences.getString("email", null);
-
 
         farmHelper = new FarmRepo();
         adapter = new FarmAdapter(farmHelper.findAllByEmail(email), FarmActivity.this);

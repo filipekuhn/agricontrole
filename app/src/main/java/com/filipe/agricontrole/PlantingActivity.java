@@ -28,6 +28,8 @@ public class PlantingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        toolbar.setLogo(R.drawable.ic_corn);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabCreatePlanting);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

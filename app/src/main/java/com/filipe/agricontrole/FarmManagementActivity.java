@@ -40,11 +40,9 @@ public class FarmManagementActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    //mTextMessage.setText(R.string.title_home);
                     configureStockRecycler(farmId);
                     return true;
                 case R.id.navigation_dashboard:
-                    //mTextMessage.setText(R.string.title_dashboard);
                     configurePeriodRecycler(farmId);
 
                     fab.setOnClickListener(new View.OnClickListener() {
@@ -55,9 +53,6 @@ public class FarmManagementActivity extends AppCompatActivity {
                     });
 
                     return true;
-                /*case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;*/
             }
             return false;
         }
@@ -80,12 +75,12 @@ public class FarmManagementActivity extends AppCompatActivity {
     }
 
     private void configurePeriodRecycler(int index) {
-        // Configurando o gerenciador de layout para ser uma lista.
+        // Configure the layout manager to be a list
         recyclerView = (RecyclerView)findViewById(R.id.periodRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // Adiciona o adapter que irá anexar os objetos à lista.
+        // Add the adapter that include the objects to the list.
         periodHelper = new PeriodRepo();
         periodAdapter = new PeriodAdapter(periodHelper.findAllByFarmId(index), FarmManagementActivity.this);
         recyclerView.setAdapter(periodAdapter);
@@ -94,12 +89,12 @@ public class FarmManagementActivity extends AppCompatActivity {
     }
 
     private void configureStockRecycler(int index) {
-        // Configurando o gerenciador de layout para ser uma lista.
+        // Configure the layout manager to be a list
         recyclerView = (RecyclerView)findViewById(R.id.periodRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // Adiciona o adapter que irá anexar os objetos à lista.
+        // Add the adapter that include the objects to the list.
         stockHelper = new StockRepo();
         stockAdapter = new StockAdapter(stockHelper.findAllByFarmId(index), FarmManagementActivity.this);
         recyclerView.setAdapter(stockAdapter);
