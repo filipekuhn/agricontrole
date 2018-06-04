@@ -36,6 +36,9 @@ public class PlantingRepo {
                 + "FOREIGN KEY(" + Planting.KEY_PlotId + ") REFERENCES " + Plot.TABLE + "(" + Plot.KEY_PlotId + ") ON DELETE CASCADE);";
     }
 
+    public static String insertInitialPlanting(){
+        return "INSERT INTO " + Planting.TABLE + " (id, plot_id, type, date) VALUES (1, 1, 'Soja', '01/06/2018');";
+    }
     public int insert(Planting planting){
         int plantingId;
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();

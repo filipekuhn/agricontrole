@@ -11,9 +11,4 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_stock" />
 
-    <item
-        android:id="@+id/navigation_notifications"
-        android:title=""
-        android:icon="@drawable/ic_close_circle"/>
-
 </menu>

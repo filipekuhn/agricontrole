@@ -37,7 +37,7 @@ public class ProductRepo {
                 + Product.KEY_Name + " TEXT NOT NULL, "
                 + Product.KEY_Quantity + " DOUBLE NOT NULL, "
                 + Product.KEY_ExpirationDate + " TEXT NOT NULL, "
-                + "FOREIGN KEY(" + Product.KEY_StockId + ") REFERENCES " + Stock.TABLE + "(" + Stock.KEY_StockId + "),"
+                + "FOREIGN KEY(" + Product.KEY_StockId + ") REFERENCES " + Stock.TABLE + "(" + Stock.KEY_StockId + ") ON DELETE CASCADE,"
                 + "FOREIGN KEY(" + Product.KEY_CategoryId + ") REFERENCES " + Category.TABLE + "(" + Category.KEY_CategoryId + ") ON DELETE CASCADE);";
     }
 

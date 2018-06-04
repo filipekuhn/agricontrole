@@ -32,7 +32,7 @@ public class FarmRepo {
                 + Farm.KEY_Owner + " TEXT NOT NULL, "
                 + Farm.KEY_Address + " TEXT NOT NULL, "
                 + Farm.KEY_City + " INTEGER NOT NULL, "
-                + "FOREIGN KEY(" + Farm.KEY_AgronomisId + ") REFERENCES " + Agronomist.TABLE + "(" + Agronomist.KEY_AgronomistId + "), "
+                + "FOREIGN KEY(" + Farm.KEY_AgronomisId + ") REFERENCES " + Agronomist.TABLE + "(" + Agronomist.KEY_AgronomistId + ") ON DELETE CASCADE, "
                 + "FOREIGN KEY(" + Farm.KEY_City + ") REFERENCES " + City.TABLE + "(" + City.KEY_CityId + "));";
     }
 

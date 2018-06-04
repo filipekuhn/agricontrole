@@ -12,6 +12,7 @@ import com.filipe.agricontrole.data.repo.FarmRepo;
 import com.filipe.agricontrole.data.repo.PeriodRepo;
 import com.filipe.agricontrole.data.repo.PlantingRepo;
 import com.filipe.agricontrole.data.repo.PlotRepo;
+import com.filipe.agricontrole.data.repo.ProductApplicationRepo;
 import com.filipe.agricontrole.data.repo.ProductRepo;
 import com.filipe.agricontrole.data.repo.StateRepo;
 import com.filipe.agricontrole.data.repo.StockRepo;
@@ -32,7 +33,7 @@ public class DBHelper  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        //All necessary tables you like to create will create here
+        //All necessary tables are created here
         db.execSQL(AgronomistRepo.createTable());
         db.execSQL(AgronomistRepo.insertAdm());
         db.execSQL(FarmRepo.createTable());
@@ -51,6 +52,7 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL(PlotRepo.createTable());
         db.execSQL(PlotRepo.insertPlot());
         db.execSQL(PlantingRepo.createTable());
+        db.execSQL(PlantingRepo.insertInitialPlanting());
         db.execSQL(UnitTypeRepo.createTable());
         db.execSQL(UnitTypeRepo.initialUnitType());
         db.execSQL(UnitTypeRepo.initalUnitType2());
@@ -61,6 +63,8 @@ public class DBHelper  extends SQLiteOpenHelper {
         db.execSQL(CategoryRepo.initialCategory4());
         db.execSQL(ProductRepo.createTable());
         db.execSQL(ProductRepo.insertInitialProduct());
+        db.execSQL(ProductApplicationRepo.createTable());
+        db.execSQL(ProductApplicationRepo.initialProductApplication());
 
     }
 

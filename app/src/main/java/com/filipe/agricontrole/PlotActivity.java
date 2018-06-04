@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.filipe.agricontrole.adapter.PlotAdapter;
@@ -26,9 +25,6 @@ public class PlotActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plot);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setLogo(R.drawable.ic_plot);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.createPlot);
         fab.setOnClickListener(new View.OnClickListener() {

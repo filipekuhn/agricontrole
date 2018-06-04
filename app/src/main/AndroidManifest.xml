@@ -81,7 +81,16 @@
         <activity
             android:name=".CreateProductActivity"
             android:label="@string/title_activity_create_product"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProductApplicationActivity"
+            android:label="@string/title_activity_product_application"
+            android:parentActivityName=".PlantingActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.filipe.agricontrole.PlantingActivity" />
+        </activity>
     </application>
 
 </manifest>

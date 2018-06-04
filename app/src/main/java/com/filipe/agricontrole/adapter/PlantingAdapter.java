@@ -42,7 +42,7 @@ public class PlantingAdapter extends RecyclerView.Adapter<PlantingHolder> {
         if(plantingList.get(position).getHarvestDate() != null)
             holder.harvestDate.setText("Data de Colheita: " + plantingList.get(position).getHarvestDate());
 
-        //holder.btnView.setOnClickListener(view -> viewPlot(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
+        holder.btnView.setOnClickListener(view -> viewProductApplication(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
         //holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
         //holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete period from farm
     }
@@ -57,4 +57,10 @@ public class PlantingAdapter extends RecyclerView.Adapter<PlantingHolder> {
 
         //plotActivity.deletePlot(position, index);
     }*/
+
+    public void viewProductApplication(int position){
+        int index = plantingList.get(position).getId();
+
+        plantingActivity.productApplicationActivity(index);
+    }
 }

@@ -62,7 +62,7 @@ public class PlantingActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    public void createPlantingActivity(){
+    private void createPlantingActivity(){
         Intent intent = new Intent(this, CreatePlantingActivity.class);
         intent.putExtra("plotId", plotId);
         intent.putExtra("plotName", plotName);
@@ -72,6 +72,18 @@ public class PlantingActivity extends AppCompatActivity {
         intent.putExtra("periodName", periodName);
         startActivity(intent);
         finish();
+    }
+
+    public void productApplicationActivity(int index){
+        Intent intent = new Intent(this, ProductApplicationActivity.class);
+        intent.putExtra("plantingId", index);
+        intent.putExtra("plotId", plotId);
+        intent.putExtra("plotName", plotName);
+        intent.putExtra("periodId", periodId);
+        intent.putExtra("periodName", periodName);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
+        startActivity(intent);
     }
 
 }

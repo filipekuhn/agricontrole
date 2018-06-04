@@ -15,7 +15,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        card_view:cardBackgroundColor="@color/gray_btn_bg_color"
+        card_view:cardBackgroundColor="#e7e7e7"
         card_view:cardCornerRadius="4dp"
         card_view:contentPaddingLeft="4dp"
         card_view:contentPaddingRight="4dp"
@@ -107,7 +107,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="right"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -116,7 +116,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
-                    android:src="@android:drawable/ic_menu_view"
+                    android:layout_marginBottom="2dp"
+                    android:background="#e7e7e7"
+                    app:srcCompat="@drawable/ic_eye"
                     app:layout_constraintRight_toLeftOf="@+id/btnEdit"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,7 +128,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
-                    android:src="@android:drawable/ic_menu_edit"
+                    android:layout_marginBottom="2dp"
+                    android:background="#e7e7e7"
+                    app:srcCompat="@drawable/ic_pencil_circle"
                     app:layout_constraintRight_toLeftOf="@+id/btnDelete"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -136,7 +140,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="4dp"
-                    android:src="@android:drawable/ic_delete"
+                    android:layout_marginBottom="2dp"
+                    android:background="#e7e7e7"
+                    app:srcCompat="@drawable/ic_close_circle"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
             </LinearLayout>

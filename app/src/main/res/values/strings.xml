@@ -14,7 +14,6 @@
     <string name="login_help">Ajuda</string>
 
     <!-- SignUp -->
-
     <string name="signUp_txtName">Nome:</string>
     <string name="signUp_txtSurename">Sobrenome:</string>
     <string name="signUp_txtCellphone">Celular:</string>
@@ -116,6 +115,15 @@
     <string name="product_txtExpirationDate">Data de Validade</string>
     <string name="product_txtCategory">Categoria</string>
     <string name="product_btnSave">Cadastrar Produto</string>
+
+    <!-- Product Application -->
+    <string name="title_activity_product_application">Aplicações de Produtos</string>
+
+    <!-- Farm Drawer -->
+    <string name="account">Gerenciar Conta</string>
+    <string name="create_farm">Cadastrar Fazenda</string>
+    <string name="edit_account">Editar Conta</string>
+    <string name="delete_account">Deletar Conta</string>
 
 
 </resources>

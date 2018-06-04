@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 import com.filipe.agricontrole.adapter.PeriodAdapter;
 import com.filipe.agricontrole.adapter.StockAdapter;
@@ -21,14 +20,14 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class FarmManagementActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-    RecyclerView recyclerView;
-    PeriodAdapter periodAdapter;
-    StockAdapter stockAdapter;
-    PeriodRepo periodHelper;
-    StockRepo stockHelper;
 
-    FloatingActionButton fab;
+    private RecyclerView recyclerView;
+    private PeriodAdapter periodAdapter;
+    private StockAdapter stockAdapter;
+    private PeriodRepo periodHelper;
+    private StockRepo stockHelper;
+
+    private FloatingActionButton fab;
 
     int farmId;
     String farmName;
@@ -44,14 +43,6 @@ public class FarmManagementActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_dashboard:
                     configurePeriodRecycler(farmId);
-
-                    fab.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            createPeriodActivity();
-                        }
-                    });
-
                     return true;
             }
             return false;
@@ -69,9 +60,10 @@ public class FarmManagementActivity extends AppCompatActivity {
 
         farmId = getIntent().getExtras().getInt("farmId");
         farmName = getIntent().getExtras().getString("farmName");
+
         configurePeriodRecycler(farmId);
 
-        fab = (FloatingActionButton) findViewById(R.id.createPeriod);
+
     }
 
     private void configurePeriodRecycler(int index) {
@@ -80,6 +72,13 @@ public class FarmManagementActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
+        fab = (FloatingActionButton) findViewById(R.id.createPeriod);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPeriodActivity();
+            }
+        });
         // Add the adapter that include the objects to the list.
         periodHelper = new PeriodRepo();
         periodAdapter = new PeriodAdapter(periodHelper.findAllByFarmId(index), FarmManagementActivity.this);
