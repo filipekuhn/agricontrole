@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class ProductApplicationAdapter extends RecyclerView.Adapter<ProductApplicationHolder> {
-    public List<ProductApplication> productApplicationList;
+    private List<ProductApplication> productApplicationList;
     ProductApplicationActivity productApplicationActivity;
 
     public ProductApplicationAdapter(List<ProductApplication> productApplicationList, ProductApplicationActivity productApplicationActivity) {

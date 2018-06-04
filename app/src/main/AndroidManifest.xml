@@ -91,6 +91,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.filipe.agricontrole.PlantingActivity" />
         </activity>
+        <activity
+            android:name=".CreateProductApplicationActivity"
+            android:label="@string/title_activity_create_product_application"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

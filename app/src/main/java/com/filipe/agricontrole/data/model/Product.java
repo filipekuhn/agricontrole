@@ -65,4 +65,8 @@ public class Product {
     public void setStock(Stock stock) {
         this.stock = stock;
     }
+
+    public String toString() {
+        return this.name;            //To display the name in spinner
+    }
 }

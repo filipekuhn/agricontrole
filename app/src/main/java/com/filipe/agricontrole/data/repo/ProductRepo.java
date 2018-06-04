@@ -91,6 +91,7 @@ public class ProductRepo {
                 product = new Product();
                 stock = new Stock();
                 category = new Category();
+                unitType = new UnitType();
                 productList.add(product);
 
                 product.setId(c.getInt(0));
@@ -111,5 +112,4 @@ public class ProductRepo {
         }
         return productList;
     }
-
 }

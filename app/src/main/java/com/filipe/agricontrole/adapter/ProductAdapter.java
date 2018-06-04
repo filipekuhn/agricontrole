@@ -36,7 +36,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
         String numberAsString = decimalFormat.format(productList.get(position).getQuantity());
         numberAsString.replace(".", ",");
 
-        holder.quantity.setText("Quantidade: " + numberAsString + " " +
+        holder.quantity.setText("Qtd. Disponível: " + numberAsString + " " +
                     productList.get(position).getCategory().getUnitType().getName());
 
         holder.expirationDate.setText("Validade: " + productList.get(position).getExpiration_date());

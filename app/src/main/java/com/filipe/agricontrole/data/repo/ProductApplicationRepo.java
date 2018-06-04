@@ -1,7 +1,9 @@
 package com.filipe.agricontrole.data.repo;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.filipe.agricontrole.data.DatabaseManager;
 import com.filipe.agricontrole.data.model.Category;
@@ -44,6 +46,40 @@ public class ProductApplicationRepo {
 
     public static String initialProductApplication(){
         return "INSERT INTO " + ProductApplication.TABLE + " VALUES(1, 1, 1, 0.01, '02/06/2018');";
+    }
+
+    public int insert(ProductApplication productApplication){
+        if(updateQuantity(productApplication.getQuantity(), productApplication.getProduct().getId())){
+            int productApplicationId;
+            SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+            ContentValues values = new ContentValues();
+            values.put(ProductApplication.KEY_ProductId, productApplication.getProduct().getId());
+            values.put(ProductApplication.KEY_PlantingId, productApplication.getPlanting().getId());
+            values.put(ProductApplication.KEY_Quantity, productApplication.getQuantity());
+            values.put(ProductApplication.KEY_Date, productApplication.getDate());
+
+            // Inserting Row
+            productApplicationId=(int)db.insert(ProductApplication.TABLE, null, values);
+            DatabaseManager.getInstance().closeDatabase();
+
+            return productApplicationId;
+        }
+        return 0;
+    }
+
+    private boolean updateQuantity(Double quantity, int productId){
+        try{
+            SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+            String query = "UPDATE product SET quantity = quantity -  " + quantity + " WHERE id = " + productId + ";"; //Set the product quantity the
+            db.execSQL(query);                                                                         //result of the old quantity minus the quantity applicated
+
+            return true;
+        }catch(Exception e){
+            Log.d("Erro ao deletar Produto", e.toString());
+            return false;
+        }finally {
+            DatabaseManager.getInstance().closeDatabase();
+        }
     }
 
     public List<ProductApplication> findAllByPlantingId(int plantingId){

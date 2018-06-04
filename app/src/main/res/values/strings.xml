@@ -14,13 +14,13 @@
     <string name="login_help">Ajuda</string>
 
     <!-- SignUp -->
-    <string name="signUp_txtName">Nome:</string>
-    <string name="signUp_txtSurename">Sobrenome:</string>
-    <string name="signUp_txtCellphone">Celular:</string>
-    <string name="signUp_txtCellphone2">Telefone:</string>
-    <string name="signUp_Email">Email:</string>
-    <string name="signUp_txtEmail">Email:</string>
-    <string name="signUp_txtPassword">Senha:</string>
+    <string name="signUp_txtName">Nome</string>
+    <string name="signUp_txtSurename">Sobrenome</string>
+    <string name="signUp_txtCellphone">Celular</string>
+    <string name="signUp_txtCellphone2">Telefone</string>
+    <string name="signUp_Email">Email</string>
+    <string name="signUp_txtEmail">Email</string>
+    <string name="signUp_txtPassword">Senha</string>
     <string name="signUp_btnSave">Cadastrar</string>
 
     <!-- Validations -->
@@ -37,9 +37,9 @@
     <string name="mensagem_erro">Erro ao salvar!</string>
 
     <!-- Users -->
-    <string name="usuario_txtNane">Nome:</string>
-    <string name="usuario_txtEmail">Login:</string>
-    <string name="usuario_txtPassword">Senha:</string>
+    <string name="usuario_txtNane">Nome</string>
+    <string name="usuario_txtEmail">Login</string>
+    <string name="usuario_txtPassword">Senha</string>
     <string name="list_users">Lista de usuários</string>
     <string name="title_activity_sign_up">SignUpActivity</string>
     <string name="title_activity_auto_login">AutoLoginActivity</string>
@@ -51,11 +51,11 @@
     <string name="current_user_email">emailusuario@agricontrole.com</string>
 
     <!-- Farm form -->
-    <string name="farm_txtName">Nome da Fazenda:</string>
-    <string name="farm_txtOwner">Proprietário:</string>
-    <string name="farm_txtAddress">Endereço:</string>
-    <string name="farm_txtCity">Cidade:</string>
-    <string name="farm_txtState">Estado:</string>
+    <string name="farm_txtName">Nome da Fazenda</string>
+    <string name="farm_txtOwner">Proprietário</string>
+    <string name="farm_txtAddress">Endereço</string>
+    <string name="farm_txtCity">Cidade</string>
+    <string name="farm_txtState">Estado</string>
     <string name="farm_btnSave">Cadastrar Fazenda</string>
 
     <string name="title_activity_farm">Fazendas</string>
@@ -118,12 +118,18 @@
 
     <!-- Product Application -->
     <string name="title_activity_product_application">Aplicações de Produtos</string>
+    <string name="application_date">Data de Aplicação</string>
+    <string name="application_product">Produto</string>
+    <string name="application_btnSave">Cadastrar Aplicação</string>
+
 
     <!-- Farm Drawer -->
     <string name="account">Gerenciar Conta</string>
     <string name="create_farm">Cadastrar Fazenda</string>
     <string name="edit_account">Editar Conta</string>
     <string name="delete_account">Deletar Conta</string>
+    <string name="title_activity_create_product_application">CreateProductApplicationActivity
+    </string>
 
 
 </resources>
