@@ -78,11 +78,46 @@ public class ProductRepo {
         }
     }
 
+    public Product findById(int id){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String query = "SELECT p.id, p.name,p.quantity, p.expiration_date, s.id, s.farm_id," +
+                " c.id, c.name, ut.id, ut.name FROM stock AS S INNER JOIN product AS p ON s.id = p.stock_id INNER JOIN category AS c" +
+                " ON p.category_id = c.id INNER JOIN unit_type as ut ON c.unit_type_id = ut.id WHERE p.id = ?";
+        Cursor c = db.rawQuery(query, new String[] {String.valueOf(id)});
+
+        if(c.getCount() > 0){
+            c.moveToFirst();
+
+            product = new Product();
+            stock = new Stock();
+            category = new Category();
+            unitType = new UnitType();
+
+            product.setId(c.getInt(0));
+            product.setName(c.getString(1));
+            product.setQuantity(c.getDouble(2));
+            product.setExpiration_date(c.getString(3));
+            stock.setId(c.getInt(4));
+            stock.setFarmId(c.getInt(5));
+            category.setId(c.getInt(6));
+            category.setName(c.getString(7));
+            unitType.setId(c.getInt(8));
+            unitType.setName(c.getString(9));
+
+            category.setUnitType(unitType);
+            product.setStock(stock);
+            product.setCategory(category);
+
+            return product;
+        }
+        return product;
+    }
+
     public List<Product> findAllByStockId(int stockId){
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         String query = "SELECT p.id, p.name,p.quantity, p.expiration_date, s.id, s.farm_id," +
                 " c.id, c.name, ut.id, ut.name FROM stock AS S INNER JOIN product AS p ON s.id = p.stock_id INNER JOIN category AS c" +
-                " ON p.category_id = c.id INNER JOIN unit_type as ut ON c.unit_type_id = ut.id WHERE p.stock_id = ?";
+                " ON p.category_id = c.id INNER JOIN unit_type as ut ON c.unit_type_id = ut.id WHERE p.stock_id = ? ORDER BY p.id DESC";
         Cursor c = db.rawQuery(query, new String[] {String.valueOf(stockId)});
 
         List<Product> productList = new ArrayList<>();

@@ -16,29 +16,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.filipe.agricontrole.adapter.FarmAdapter;
 import com.filipe.agricontrole.data.model.Farm;
 import com.filipe.agricontrole.data.repo.AgronomistRepo;
 import com.filipe.agricontrole.data.repo.FarmRepo;
-import com.filipe.agricontrole.holder.FarmHolder;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class FarmActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Farm farm;
-    AgronomistRepo agronomistHelper;
-    FarmRepo farmHelper;
-    RecyclerView recyclerView;
-    FarmAdapter adapter;
-    FarmHolder holder;
-
-
-    ImageButton btnView, btnDelete, btnEdit;
+    private Farm farm;
+    private AgronomistRepo agronomistHelper;
+    private FarmRepo farmHelper;
+    private RecyclerView recyclerView;
+    private FarmAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,11 +120,7 @@ public class FarmActivity extends AppCompatActivity
 
         if (id == R.id.nav_create_farm) {
             createFarmActivity();
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_create_product) {
 
         } else if (id == R.id.nav_edit) {
             startActivity(new Intent(this, AgronomistActivity.class));

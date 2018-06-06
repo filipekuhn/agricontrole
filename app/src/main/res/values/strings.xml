@@ -130,6 +130,8 @@
     <string name="delete_account">Deletar Conta</string>
     <string name="title_activity_create_product_application">CreateProductApplicationActivity
     </string>
+    <string name="title_activity_update_product_application">UpdateProductApplicationActivity
+    </string>
 
 
 </resources>

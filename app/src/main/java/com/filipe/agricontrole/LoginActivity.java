@@ -99,11 +99,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void ChamarMainAcitivity(){
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
-    }
-
     public void signUp(View view){
         startActivity(new Intent(this, SignUpActivity.class));
     }

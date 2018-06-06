@@ -3,11 +3,8 @@ package com.filipe.agricontrole;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import com.filipe.agricontrole.data.model.Planting;
 import com.filipe.agricontrole.data.model.Product;
@@ -18,32 +15,29 @@ import com.filipe.agricontrole.data.repo.ProductRepo;
 import com.filipe.agricontrole.data.repo.StockRepo;
 import com.filipe.agricontrole.regex.DateValidator;
 
-import java.util.List;
-
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class CreateProductApplicationActivity extends AppCompatActivity {
+public class UpdateProductApplicationActivity extends AppCompatActivity {
 
-    private ProductRepo productHelper;
+    private EditText edtQuantity, edtDate, edtProduct;
+    private ProductApplicationRepo helper;
     private ProductApplication productApplication;
-    private Planting planting;
-    private Stock stock;
+    private ProductRepo productHelper;
     private StockRepo stockHelper;
-    private ProductApplicationRepo applicationHelper;
+    private Stock stock;
+    private Planting planting;
+    private Product product;
     private DateValidator dateValidator;
-    private Spinner productSpinner;
-    private EditText edtQuantity, edtDate;
-
-    int plotId, farmId, periodId, plantingId;
-    String plotName, farmName, periodName;
+    private int id, plantingId, plotId, farmId, periodId;
+    private String plotName, farmName, periodName;
+    private Double quantityHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_product_application);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_update_product_application);
 
+        id = getIntent().getExtras().getInt("applicationId");
         plantingId = getIntent().getExtras().getInt("plantingId");
         plotId = getIntent().getExtras().getInt("plotId");
         plotName = getIntent().getExtras().getString("plotName");
@@ -52,35 +46,35 @@ public class CreateProductApplicationActivity extends AppCompatActivity {
         periodId = getIntent().getExtras().getInt("periodId");
         periodName = getIntent().getExtras().getString("periodName");
 
-        productSpinner = (Spinner) findViewById(R.id.application_spinnerProduct);
+        edtProduct = (EditText) findViewById(R.id.application_edtProduct);
         edtQuantity = (EditText) findViewById(R.id.application_edtQuantity);
         edtDate = (EditText) findViewById(R.id.application_edtDate);
 
         dateValidator = new DateValidator();
 
-        fillProductSpinner();
+        insertEditText();
     }
 
-    private void fillProductSpinner(){
+    private void insertEditText(){
+        helper = new ProductApplicationRepo();
         productHelper = new ProductRepo();
-        productSpinner = (Spinner) findViewById(R.id.application_spinnerProduct);
 
-        stockHelper = new StockRepo();
-        stock = new Stock();
-        List<Stock> stockList = stockHelper.findAllByFarmId(farmId);
+        productApplication = helper.findById(id);
+        product = productHelper.findById(productApplication.getProduct().getId());
 
-        int stockId = stockList.get(0).getId();
-        List<Product> productList = productHelper.findAllByStockId(stockId);
+        quantityHelper = productApplication.getQuantity(); //Save the quantity applied before update
 
-        ArrayAdapter<Product> adapter = new ArrayAdapter<Product>(this, android.R.layout.simple_spinner_item, productList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        productSpinner.setAdapter(adapter);
+        String quantity = Double.toString(productApplication.getQuantity());
+        String date = productApplication.getDate();
+        date.replace("/", "");
+
+        edtProduct.setText(product.getName());
+        edtQuantity.setText(quantity);
+        edtDate.setText(date);
     }
 
-    public void createProductApplication(View view){
-
-        //Convert product object from spinner to take her ID to set on product_application table
-        Product product = (Product) (productSpinner).getSelectedItem();
+    public void updateProductApplication(View view){
+;
         String quantity = edtQuantity.getText().toString().trim();
         String date = edtDate.getText().toString().trim();
         Double availableQuantity ,quantityAux, finalQuantity;
@@ -97,7 +91,7 @@ public class CreateProductApplicationActivity extends AppCompatActivity {
                     .show();
         }else{
             quantityAux = Double.parseDouble(quantity);
-            availableQuantity = product.getQuantity();
+            availableQuantity = product.getQuantity() + quantityHelper;
 
             if(quantityAux > availableQuantity){
                 new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
@@ -105,10 +99,11 @@ public class CreateProductApplicationActivity extends AppCompatActivity {
                         .setContentText("A quantidade informada na aplicação é maior que a quantidade disponível do produto")
                         .show();
             }else{
-                applicationHelper = new ProductApplicationRepo();
+                helper = new ProductApplicationRepo();
                 productApplication = new ProductApplication();
                 planting = new Planting();
 
+                productApplication.setId(id);
                 planting.setId(plantingId);
                 productApplication.setProduct(product);
                 productApplication.setPlanting(planting);
@@ -117,7 +112,7 @@ public class CreateProductApplicationActivity extends AppCompatActivity {
 
                 finalQuantity = availableQuantity - quantityAux;
 
-                if(applicationHelper.insert(productApplication, finalQuantity) > 0){
+                if(helper.update(productApplication, finalQuantity) > 0){
                     new SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
@@ -149,4 +144,5 @@ public class CreateProductApplicationActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
 }

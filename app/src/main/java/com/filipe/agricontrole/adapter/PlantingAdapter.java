@@ -44,7 +44,7 @@ public class PlantingAdapter extends RecyclerView.Adapter<PlantingHolder> {
 
         holder.btnView.setOnClickListener(view -> viewProductApplication(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
         //holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
-        //holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete period from farm
+        holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete period from farm
     }
 
     @Override
@@ -52,12 +52,11 @@ public class PlantingAdapter extends RecyclerView.Adapter<PlantingHolder> {
         return plantingList != null ? plantingList.size() : 0;
     }
 
-    /*public void delete(int position) {
+    public void delete(int position) {
         int index = plantingList.get(position).getId();
 
-        //plotActivity.deletePlot(position, index);
-    }*/
-
+        plantingActivity.deletePlanting(position, index);
+    }
     public void viewProductApplication(int position){
         int index = plantingList.get(position).getId();
 

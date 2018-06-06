@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class ProductApplicationAdapter extends RecyclerView.Adapter<ProductApplicationHolder> {
-    private List<ProductApplication> productApplicationList;
+    public List<ProductApplication> productApplicationList;
     ProductApplicationActivity productApplicationActivity;
 
     public ProductApplicationAdapter(List<ProductApplication> productApplicationList, ProductApplicationActivity productApplicationActivity) {
@@ -42,12 +42,30 @@ public class ProductApplicationAdapter extends RecyclerView.Adapter<ProductAppli
         holder.date.setText("Data de Aplicação: " + productApplicationList.get(position).getDate());
 
         //holder.btnView.setOnClickListener(view -> viewPlot(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
-        //holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
-        //holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete period from farm
+        holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
+        holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete period from farm
     }
 
     @Override
     public int getItemCount() {
         return productApplicationList != null ? productApplicationList.size() : 0;
+    }
+
+    public void update(int position){
+        int index = productApplicationList.get(position).getId();
+
+        productApplicationActivity.updateProductApplication(index);
+    }
+
+    public void delete(int position) {
+        //Get the ProductApplication id and quantity. Get the product id in application and set the new product quantity the sum of the quantity's
+        int index = productApplicationList.get(position).getId();
+        double applicationQuantity = productApplicationList.get(position).getQuantity();
+        int productId = productApplicationList.get(position).getProduct().getId();
+        double productQuantity = productApplicationList.get(position).getProduct().getQuantity();
+
+        double quantity = applicationQuantity + productQuantity;
+
+        productApplicationActivity.deleteProductApplication(position, index, productId, quantity);
     }
 }

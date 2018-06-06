@@ -49,8 +49,6 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_farm);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
         edtName = (EditText) findViewById(R.id.farm_edtName);
         edtOwner = (EditText) findViewById(R.id.farm_edtOwner);
@@ -96,14 +94,13 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
         spinnerState = (Spinner) findViewById(R.id.farm_spinnerState);
         spinnerCity = (Spinner) findViewById(R.id.farm_spinnerCity);
 
-        //Convert city object from spinner to take her ID to set on FARM table
+        //Cast city object from spinner to take her ID to set on FARM table
         City cityAux = (City) (spinnerCity).getSelectedItem();
 
         int agronomistId = agronomist.getId();
         String name = edtName.getText().toString().trim();
         String owner = edtOwner.getText().toString().trim();
         String address = edtAddress.getText().toString().trim();
-        //City city = cityAux.setId(cityAux);
 
         if((name == null || name.equals("") || (owner == null || owner.equals("")) ||
             address == null || address.equals(""))){
@@ -136,7 +133,6 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
                     })
                             .setTitleText("Cadastro realizado com sucesso")
                             .show();
-
                 }
             }
             else{
@@ -149,7 +145,7 @@ public class CreateFarmActivity extends AppCompatActivity implements AdapterView
     }
 
 
-    public void fillStateSpinner(){
+    private void fillStateSpinner(){
         stateRepo = new StateRepo();
         spinnerState = (Spinner) findViewById(R.id.farm_spinnerState);
         spinnerCity = (Spinner) findViewById(R.id.farm_spinnerCity);

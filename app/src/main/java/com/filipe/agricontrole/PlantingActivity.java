@@ -12,6 +12,8 @@ import android.view.View;
 import com.filipe.agricontrole.adapter.PlantingAdapter;
 import com.filipe.agricontrole.data.repo.PlantingRepo;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class PlantingActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -84,6 +86,26 @@ public class PlantingActivity extends AppCompatActivity {
         intent.putExtra("farmId", farmId);
         intent.putExtra("farmName", farmName);
         startActivity(intent);
+    }
+
+    public void deletePlanting(int position, int index){
+        plantingHelper = new PlantingRepo();
+
+        new cn.pedant.SweetAlert.SweetAlertDialog(this, SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                if (plantingHelper.delete(index)) {
+                    adapter.plantingList.remove(position);
+                    adapter.notifyItemRemoved(position);
+                    sweetAlertDialog.dismissWithAnimation();
+                }
+            }
+        }).setTitleText("Deseja Excluir?").setCancelButton("Cancelar", new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.cancel();
+            }
+        }).show();
     }
 
 }

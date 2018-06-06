@@ -48,8 +48,8 @@ public class ProductApplicationRepo {
         return "INSERT INTO " + ProductApplication.TABLE + " VALUES(1, 1, 1, 0.01, '02/06/2018');";
     }
 
-    public int insert(ProductApplication productApplication){
-        if(updateQuantity(productApplication.getQuantity(), productApplication.getProduct().getId())){
+    public int insert(ProductApplication productApplication, Double finalQuantity){
+        if(updateQuantity(finalQuantity, productApplication.getProduct().getId())){
             int productApplicationId;
             SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
             ContentValues values = new ContentValues();
@@ -67,10 +67,46 @@ public class ProductApplicationRepo {
         return 0;
     }
 
+    public boolean delete(int id,int productId ,Double quantity){
+        try{
+            updateQuantity(quantity, productId);//update the product quantity if a application is created, deleted or updated.
+
+            SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+            db.delete(ProductApplication.TABLE, ProductApplication.KEY_ProductApplicationId + "=" + id, null);
+
+            return true;
+        }catch (Exception e) {
+            Log.d("Erro ao deletar Fazenda", e.toString());
+            return false;
+        }finally {
+            DatabaseManager.getInstance().closeDatabase();
+        }
+    }
+
+    public int update(ProductApplication productApplication, Double quantity){
+
+        if(updateQuantity(quantity, productApplication.getProduct().getId())){
+            SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+            ContentValues values = new ContentValues();
+            values.put(ProductApplication.KEY_ProductId, productApplication.getProduct().getId());
+            values.put(ProductApplication.KEY_PlantingId, productApplication.getPlanting().getId());
+            values.put(ProductApplication.KEY_Quantity, productApplication.getQuantity());
+            values.put(ProductApplication.KEY_Date, productApplication.getDate());
+            String id = String.valueOf(productApplication.getId());
+            String where = ProductApplication.KEY_ProductApplicationId + "=?";
+            String[] whereArgs = new String[] {id};
+            int count = db.update(ProductApplication.TABLE, values, where, whereArgs);
+            DatabaseManager.getInstance().closeDatabase();
+            return count;
+        }
+
+        return 0;
+    }
+
     private boolean updateQuantity(Double quantity, int productId){
         try{
             SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
-            String query = "UPDATE product SET quantity = quantity -  " + quantity + " WHERE id = " + productId + ";"; //Set the product quantity the
+            String query = "UPDATE product SET quantity = " + quantity + " WHERE id = " + productId + ";"; //Set the product quantity the
             db.execSQL(query);                                                                         //result of the old quantity minus the quantity applicated
 
             return true;
@@ -80,6 +116,35 @@ public class ProductApplicationRepo {
         }finally {
             DatabaseManager.getInstance().closeDatabase();
         }
+    }
+
+    public ProductApplication findById(int id){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String query = "SELECT * FROM " + ProductApplication.TABLE + " WHERE id = ?";
+        Cursor c = db.rawQuery(query, new String[] {String.valueOf(id)});
+
+
+        if(c.getCount() > 0){
+            c.moveToFirst();
+            productApplication = new ProductApplication();
+            product = new Product();
+            planting = new Planting();
+            category = new Category();
+            unitType = new UnitType();
+
+            productApplication.setId(c.getInt(0));
+            product.setId(c.getInt(1));
+            planting.setId(c.getInt(2));
+            productApplication.setQuantity(c.getDouble(3));
+            productApplication.setDate(c.getString(4));
+
+            productApplication.setProduct(product);
+            productApplication.setPlanting(planting);
+
+            return productApplication;
+        }
+
+        return productApplication;
     }
 
     public List<ProductApplication> findAllByPlantingId(int plantingId){

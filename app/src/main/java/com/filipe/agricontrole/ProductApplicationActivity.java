@@ -12,6 +12,9 @@ import android.view.View;
 import com.filipe.agricontrole.adapter.ProductApplicationAdapter;
 import com.filipe.agricontrole.data.model.ProductApplication;
 import com.filipe.agricontrole.data.repo.ProductApplicationRepo;
+import com.filipe.agricontrole.data.repo.ProductRepo;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ProductApplicationActivity extends AppCompatActivity {
 
@@ -19,6 +22,7 @@ public class ProductApplicationActivity extends AppCompatActivity {
     private ProductApplicationAdapter adapter;
     private ProductApplicationRepo productApplicationHelper;
     private ProductApplication productApplication;
+    private ProductRepo productHelper;
 
     int plotId, farmId, periodId, plantingId;
     String plotName, farmName, periodName;
@@ -76,5 +80,40 @@ public class ProductApplicationActivity extends AppCompatActivity {
         intent.putExtra("periodName", periodName);
         startActivity(intent);
         finish();
+    }
+
+    public void updateProductApplication(int index){
+        Intent intent = new Intent(this, UpdateProductApplicationActivity.class);
+        intent.putExtra("plantingId", plantingId);
+        intent.putExtra("plotId", plotId);
+        intent.putExtra("plotName", plotName);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
+        intent.putExtra("periodId", periodId);
+        intent.putExtra("periodName", periodName);
+        intent.putExtra("applicationId", index);
+        startActivity(intent);
+        finish();
+    }
+
+    public void deleteProductApplication(int position, int index, int productId, Double quantity){
+        productHelper = new ProductRepo();
+        productApplicationHelper = new ProductApplicationRepo();
+
+        new cn.pedant.SweetAlert.SweetAlertDialog(this, cn.pedant.SweetAlert.SweetAlertDialog.BUTTON_CONFIRM).setConfirmButton("OK", new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                if (productApplicationHelper.delete(index, productId, quantity)) {
+                    adapter.productApplicationList.remove(position);
+                    adapter.notifyItemRemoved(position);
+                    sweetAlertDialog.dismissWithAnimation();
+                }
+            }
+        }).setTitleText("Deseja Excluir?").setCancelButton("Cancelar", new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.cancel();
+            }
+        }).show();
     }
 }

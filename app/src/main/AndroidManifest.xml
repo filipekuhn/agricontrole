@@ -82,6 +82,10 @@
         <activity
             android:name=".CreateProductApplicationActivity"
             android:label="@string/title_activity_create_product_application"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UpdateProductApplicationActivity"
+            android:label="@string/title_activity_update_product_application"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
