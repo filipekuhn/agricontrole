@@ -121,7 +121,7 @@ public class FarmActivity extends AppCompatActivity
         if (id == R.id.nav_create_farm) {
             createFarmActivity();
         } else if (id == R.id.nav_create_product) {
-
+            createCategoryActivity();
         } else if (id == R.id.nav_edit) {
             startActivity(new Intent(this, AgronomistActivity.class));
         } else if (id == R.id.nav_delete) {
@@ -180,7 +180,11 @@ public class FarmActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void createFarmActivity(){
+    private void createFarmActivity(){
         startActivity(new Intent(this, CreateFarmActivity.class));
+    }
+
+    private void createCategoryActivity(){
+        startActivity(new Intent(this, CreateCategoryActivity.class));
     }
 }

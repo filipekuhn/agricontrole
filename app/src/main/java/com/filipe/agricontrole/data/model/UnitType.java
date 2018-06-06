@@ -24,4 +24,8 @@ public class UnitType {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String toString() {
+        return this.name;            //To display the name in spinner
+    }
 }

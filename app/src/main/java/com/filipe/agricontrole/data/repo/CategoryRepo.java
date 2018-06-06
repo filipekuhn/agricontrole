@@ -1,5 +1,6 @@
 package com.filipe.agricontrole.data.repo;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -18,6 +19,7 @@ public class CategoryRepo {
 
     public CategoryRepo(){
         category = new Category();
+        unitType = new UnitType();
     }
 
     public static String createTable() {
@@ -65,4 +67,23 @@ public class CategoryRepo {
     public static String initialCategory4(){
         return "INSERT INTO " + Category.TABLE + " VALUES (4, 'Inseticida', 1);";
     }
+
+    public int insert(Category category){
+        int categoryId;
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        ContentValues values = new ContentValues();
+
+        //values.put(Category.KEY_CategoryId, category.getId());
+        values.put(Category.KEY_Name, category.getName());
+        values.put(Category.KEY_UnitType, category.getUnitType().getId());
+
+        System.out.println(values);
+        // Inserting Row
+        categoryId=(int)db.insert(Category.TABLE, null, values);
+        System.out.println(categoryId);
+        DatabaseManager.getInstance().closeDatabase();
+
+        return categoryId;
+    }
+
 }

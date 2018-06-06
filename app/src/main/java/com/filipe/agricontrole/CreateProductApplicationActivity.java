@@ -98,11 +98,13 @@ public class CreateProductApplicationActivity extends AppCompatActivity {
         }else{
             quantityAux = Double.parseDouble(quantity);
             availableQuantity = product.getQuantity();
+            String unitType = product.getCategory().getUnitType().getName();
 
             if(quantityAux > availableQuantity){
                 new SweetAlertDialog(this, SweetAlertDialog.ERROR_TYPE)
                         .setTitleText("Não foi possível concluir o cadastro")
-                        .setContentText("A quantidade informada na aplicação é maior que a quantidade disponível do produto")
+                        .setContentText("A quantidade " + quantity + " " + unitType +
+                                " informada na aplicação é maior que a quantidade disponível do produto (" + availableQuantity +" "+ unitType +")")
                         .show();
             }else{
                 applicationHelper = new ProductApplicationRepo();

@@ -93,7 +93,7 @@ public class ProductApplicationActivity extends AppCompatActivity {
         intent.putExtra("periodName", periodName);
         intent.putExtra("applicationId", index);
         startActivity(intent);
-        finish();
+
     }
 
     public void deleteProductApplication(int position, int index, int productId, Double quantity){

@@ -128,10 +128,19 @@
     <string name="create_farm">Cadastrar Fazenda</string>
     <string name="edit_account">Editar Conta</string>
     <string name="delete_account">Deletar Conta</string>
+
+
     <string name="title_activity_create_product_application">CreateProductApplicationActivity
     </string>
     <string name="title_activity_update_product_application">UpdateProductApplicationActivity
     </string>
+    <string name="title_activity_create_category">CreateCategoryActivity</string>
+
+    <!-- Category -->
+    <string name="category_txtUnitType">Unidade de Medida</string>
+    <string name="category_txtName">Nome da Categoria</string>
+    <string name="category_btnSave">Cadastrar Categoria</string>
+    <string name="create_category">Cadastrar Categoria</string>
 
 
 </resources>
