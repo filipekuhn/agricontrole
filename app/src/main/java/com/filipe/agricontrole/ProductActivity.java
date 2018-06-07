@@ -89,4 +89,13 @@ public class ProductActivity extends AppCompatActivity {
         }).show();
     }
 
+    public void updateProduct(int id){
+        Intent intent = new Intent(this, UpdateProductActivity.class);
+        intent.putExtra("productId", id);
+        intent.putExtra("stockId", stockId);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
+        startActivity(intent);
+    }
+
 }

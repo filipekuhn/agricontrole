@@ -42,7 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
         holder.expirationDate.setText("Validade: " + productList.get(position).getExpiration_date());
 
         //holder.btnView.setOnClickListener(view -> viewPlot(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
-        //holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
+        holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
         holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete period from farm
     }
 
@@ -55,5 +55,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductHolder> {
         int index = productList.get(position).getId();
 
         productActivity.deleteProduct(position, index);
+    }
+
+    public void update(int position){
+        int index = productList.get(position).getId();
+
+        productActivity.updateProduct(index);
     }
 }

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        xmlns:mask="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        tools:context="com.filipe.agricontrole.FarmActivity">
+        tools:context="com.filipe.agricontrole.UpdateProductActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,16 +29,16 @@
                 android:adjustViewBounds="false"
                 android:cropToPadding="false"
                 android:minHeight="112dp"
-                app:srcCompat="@mipmap/ic_logo" />
+                android:src="@mipmap/ic_logo" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/farm_txtName"
+                android:text="@string/product_txtName"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/farm_edtName"
+                android:id="@+id/product_edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -49,11 +51,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/farm_txtOwner"
+                android:text="@string/product_txtQuantity"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/farm_edtOwner"
+                android:id="@+id/product_edtQuantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -61,16 +63,17 @@
                 android:textColorHighlight="@android:color/holo_green_dark"
                 android:textColorLink="@android:color/holo_green_dark"
                 android:textCursorDrawable="@android:color/holo_green_dark"
-                android:textIsSelectable="false" />
+                android:textIsSelectable="false"
+                android:inputType="numberDecimal"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/farm_txtAddress"
+                android:text="@string/product_txtExpirationDate"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/farm_edtAddress"
+            <br.com.sapereaude.maskedEditText.MaskedEditText
+                android:id="@+id/product_edtExpirationDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -78,16 +81,20 @@
                 android:textColorHighlight="@android:color/holo_green_dark"
                 android:textColorLink="@android:color/holo_green_dark"
                 android:textCursorDrawable="@android:color/holo_green_dark"
-                android:textIsSelectable="false" />
+                android:textIsSelectable="false"
+                android:inputType="date"
+                android:textColorHint="@color/gray_btn_bg_color"
+                mask:allowed_chars="1234567890"
+                mask:mask="##/##/####"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/farm_txtState"
+                android:text="@string/product_txtCategory"
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/farm_spinnerState"
+                android:id="@+id/product_spinnerCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -96,34 +103,15 @@
                 android:textColorLink="@android:color/holo_green_dark"
                 android:textCursorDrawable="@android:color/holo_green_dark"
                 android:textIsSelectable="false" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/farm_txtCity"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/farm_spinnerCity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@android:color/holo_green_dark"
-                android:textColorHighlight="@android:color/holo_green_dark"
-                android:textColorLink="@android:color/holo_green_dark"
-                android:textCursorDrawable="@android:color/holo_green_dark"
-                android:textIsSelectable="false" />
-
-
 
             <Button
-                android:id="@+id/farm_btnSave"
+                android:id="@+id/product_btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@android:color/holo_green_dark"
-                android:onClick="createFarm"
-                android:text="@string/farm_btnSave"
+                android:onClick="updateProduct"
+                android:text="@string/product_btnSave"
                 android:textColor="#FFF"
                 android:textStyle="bold" />
 

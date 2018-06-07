@@ -108,4 +108,17 @@ public class PlantingActivity extends AppCompatActivity {
         }).show();
     }
 
+    public void updatePlanting(int id){
+        Intent intent = new Intent(this, UpdatePlantingActivity.class);
+        intent.putExtra("plantingId", id);
+        intent.putExtra("plotId", plotId);
+        intent.putExtra("plotName", plotName);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
+        intent.putExtra("periodId", periodId);
+        intent.putExtra("periodName", periodName);
+        startActivity(intent);
+        finish();
+    }
+
 }

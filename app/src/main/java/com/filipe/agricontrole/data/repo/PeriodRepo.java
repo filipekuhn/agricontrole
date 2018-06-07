@@ -17,9 +17,11 @@ public class PeriodRepo {
     private final String TAG = FarmRepo.class.getSimpleName().toString();
 
     private Period period;
+    private Farm farm;
 
     public PeriodRepo(){
         period = new Period();
+        farm = new Farm();
     }
 
     public static String createTable() {
@@ -67,6 +69,42 @@ public class PeriodRepo {
         }
     }
 
+    public int update(Period period){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Period.KEY_PeriodId, period.getId());
+        values.put(Period.KEY_PeriodName, period.getName());
+        values.put(Period.KEY_FarmId, period.getFarm().getId());
+        String id = String.valueOf(period.getId());
+        String where = Period.KEY_PeriodId + "=?";
+        String[] whereArgs = new String[] {id};
+        int count = db.update(Period.TABLE, values, where, whereArgs);
+        DatabaseManager.getInstance().closeDatabase();
+        return count;
+    }
+
+    public Period findById(int id){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String query = "SELECT * FROM period WHERE id = ?";
+        Cursor c =db.rawQuery(query, new String[] {String.valueOf(id)});
+
+        if(c.getCount() > 0){
+            c.moveToFirst();
+
+            period = new Period();
+            farm = new Farm();
+
+            period.setId(c.getInt(0));
+            period.setName(c.getString(1));
+            farm.setId(c.getInt(2));
+            period.setFarm(farm);
+
+            DatabaseManager.getInstance().closeDatabase();
+            return period;
+        }
+        DatabaseManager.getInstance().closeDatabase();
+        return period;
+    }
 
     public List<Period> findAllByFarmId(int farmId){
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();

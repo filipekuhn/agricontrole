@@ -38,6 +38,7 @@ public class FarmAdapter extends RecyclerView.Adapter<FarmHolder> {
 
 
         holder.btnView.setOnClickListener(view -> viewFarm((holder.getAdapterPosition())));
+        holder.btnEdit.setOnClickListener(view -> editFarm((holder.getAdapterPosition())));
         holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete farm...
     }
 
@@ -52,15 +53,12 @@ public class FarmAdapter extends RecyclerView.Adapter<FarmHolder> {
         farmActivity.deleteFarm(position, index);
     }
 
-    /*public void delete(int position) { //remove the row of the recycler and remove the farm from database
-        FarmRepo farmRepo = new FarmRepo();
+    public void editFarm(int position){
         int index = farmList.get(position).getId();
 
-        if(farmRepo.delete(index)){
-            farmList.remove(position);
-            notifyItemRemoved(position);
-        }
-    }*/
+        farmActivity.updateFarm(index);
+    }
+
 
     public void viewFarm(int position){ //Get the id from farm to open the farm management activity
         int index = farmList.get(position).getId();

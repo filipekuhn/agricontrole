@@ -74,7 +74,7 @@ public class UpdateProductApplicationActivity extends AppCompatActivity {
     }
 
     public void updateProductApplication(View view){
-;
+
         String quantity = edtQuantity.getText().toString().trim();
         String date = edtDate.getText().toString().trim();
         Double availableQuantity ,quantityAux, finalQuantity;

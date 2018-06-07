@@ -9,6 +9,7 @@ import com.filipe.agricontrole.R;
 import com.filipe.agricontrole.data.model.Planting;
 import com.filipe.agricontrole.holder.PlantingHolder;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class PlantingAdapter extends RecyclerView.Adapter<PlantingHolder> {
@@ -33,17 +34,22 @@ public class PlantingAdapter extends RecyclerView.Adapter<PlantingHolder> {
         holder.type.setText("Tipo: " + plantingList.get(position).getType());
         holder.date.setText("Data: " + plantingList.get(position).getPlantingDate());
 
-        if(plantingList.get(position).getPopulation() != 0.0)
-            holder.population.setText("População: " + plantingList.get(position).getPopulation());
+        if(plantingList.get(position).getPopulation() != 0.0){
+            DecimalFormat decimalFormat = new DecimalFormat("##0.00"); //Format with only 2 number after dot
+            String numberAsString = decimalFormat.format(plantingList.get(position).getPopulation());
+            numberAsString.replace(".", ",");
+
+            holder.population.setText("População: " + numberAsString + " ha");
+        }
 
         if(plantingList.get(position).getEmergencyDate() != null)
-            holder.emergencyDate.setText("Data de Emergência: " + plantingList.get(position).getEmergencyDate());
+            holder.emergencyDate.setText("Data Emergência: " + plantingList.get(position).getEmergencyDate());
 
         if(plantingList.get(position).getHarvestDate() != null)
-            holder.harvestDate.setText("Data de Colheita: " + plantingList.get(position).getHarvestDate());
+            holder.harvestDate.setText("Data Colheita: " + plantingList.get(position).getHarvestDate());
 
         holder.btnView.setOnClickListener(view -> viewProductApplication(holder.getAdapterPosition()));//Go to the Plot Activity and show all plots with the Period ID.
-        //holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
+        holder.btnEdit.setOnClickListener(view -> update(holder.getAdapterPosition())); //Listener to update period
         holder.btnDelete.setOnClickListener(view -> delete(holder.getAdapterPosition())); //Listener to delete period from farm
     }
 
@@ -61,5 +67,11 @@ public class PlantingAdapter extends RecyclerView.Adapter<PlantingHolder> {
         int index = plantingList.get(position).getId();
 
         plantingActivity.productApplicationActivity(index);
+    }
+
+    public void update(int position){
+        int index = plantingList.get(position).getId();
+
+        plantingActivity.updatePlanting(index);
     }
 }

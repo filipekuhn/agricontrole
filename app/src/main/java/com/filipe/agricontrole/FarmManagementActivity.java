@@ -128,8 +128,12 @@ public class FarmManagementActivity extends AppCompatActivity {
         }).show();
     }
 
-    public void updatePeriod(int position, int index){
-        periodHelper = new PeriodRepo();
+    public void updatePeriod(int index){
+        Intent intent = new Intent(this, UpdatePeriodActivity.class);
+        intent.putExtra("periodId", index);
+        intent.putExtra("farmId", farmId);
+        intent.putExtra("farmName", farmName);
+        startActivity(intent);
     }
 
     public void plotActivity(int index, String periodName){

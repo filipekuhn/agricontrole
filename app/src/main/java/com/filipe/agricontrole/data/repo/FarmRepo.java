@@ -19,9 +19,13 @@ public class FarmRepo {
     private final String TAG = FarmRepo.class.getSimpleName().toString();
 
     private Farm farm;
+    private City city;
+    private State state;
 
     public FarmRepo(){
         farm = new Farm();
+        city = new City();
+        state = new State();
     }
 
     public static String createTable() {
@@ -73,12 +77,57 @@ public class FarmRepo {
         }
     }
 
+    public int update(Farm farm){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Farm.KEY_FarmId, farm.getId());
+        values.put(Farm.KEY_AgronomisId, farm.getAgronomistId());
+        values.put(Farm.KEY_Name, farm.getName());
+        values.put(Farm.KEY_Owner, farm.getOwner());
+        values.put(Farm.KEY_Address, farm.getAddress());
+        values.put(Farm.KEY_City, farm.getCity().getId());
+        String id = String.valueOf(farm.getId());
+        String where = Farm.KEY_FarmId + "=?";
+        String[] whereArgs = new String[] {id};
+        int count = db.update(Farm.TABLE, values, where, whereArgs);
+        DatabaseManager.getInstance().closeDatabase();
+        return count;
+    }
+
     public static String insertTestFarm(){
         return "INSERT INTO " + Farm.TABLE + " VALUES(1, 1, 'Fazenda Rio Bonito', 'Romildo Bolzan','Linha Morangaba', 1);";
     }
 
     public static String insertSecondFarm(){
         return "INSERT INTO " + Farm.TABLE + " VALUES(2, 1, 'Fazenda Nova Esperança', 'Renato Portaluppi','Linha Nova Baixada', 2);";
+    }
+
+    public Farm findById(int id){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String query = "SELECT * FROM farm AS f INNER JOIN city AS c ON f.city = c.id WHERE f.id = ?";
+        Cursor c =db.rawQuery(query, new String[] {String.valueOf(id)});
+
+        if(c.getCount() > 0){
+            c.moveToFirst();
+
+            city = new City();
+            farm = new Farm();
+
+            farm.setId(c.getInt(0));
+            farm.setAgronomistId(c.getInt(1));
+            farm.setName(c.getString(2));
+            farm.setOwner(c.getString(3));
+            farm.setAddress(c.getString(4));
+            city.setId(c.getInt(6));
+            city.setName(c.getString(7));
+            city.setState_id(c.getInt(8));
+            farm.setCity(city);
+
+            DatabaseManager.getInstance().closeDatabase();
+            return farm;
+        }
+        DatabaseManager.getInstance().closeDatabase();
+        return farm;
     }
 
 

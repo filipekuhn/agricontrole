@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        tools:context="com.filipe.agricontrole.FarmActivity">
+        tools:context="com.filipe.agricontrole.UpdatePeriodActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,16 +27,16 @@
                 android:adjustViewBounds="false"
                 android:cropToPadding="false"
                 android:minHeight="112dp"
-                app:srcCompat="@mipmap/ic_logo" />
+                android:src="@mipmap/ic_logo" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/farm_txtName"
+                android:text="@string/period_txtName"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/farm_edtName"
+                android:id="@+id/period_edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -49,11 +49,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/farm_txtOwner"
+                android:text="@string/period_txtFarm"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/farm_edtOwner"
+                android:id="@+id/period_edtFarm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -61,69 +61,17 @@
                 android:textColorHighlight="@android:color/holo_green_dark"
                 android:textColorLink="@android:color/holo_green_dark"
                 android:textCursorDrawable="@android:color/holo_green_dark"
-                android:textIsSelectable="false" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/farm_txtAddress"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/farm_edtAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@android:color/holo_green_dark"
-                android:textColorHighlight="@android:color/holo_green_dark"
-                android:textColorLink="@android:color/holo_green_dark"
-                android:textCursorDrawable="@android:color/holo_green_dark"
-                android:textIsSelectable="false" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/farm_txtState"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/farm_spinnerState"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@android:color/holo_green_dark"
-                android:textColorHighlight="@android:color/holo_green_dark"
-                android:textColorLink="@android:color/holo_green_dark"
-                android:textCursorDrawable="@android:color/holo_green_dark"
-                android:textIsSelectable="false" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/farm_txtCity"
-                android:textStyle="bold" />
-
-            <Spinner
-                android:id="@+id/farm_spinnerCity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="@android:color/holo_green_dark"
-                android:textColorHighlight="@android:color/holo_green_dark"
-                android:textColorLink="@android:color/holo_green_dark"
-                android:textCursorDrawable="@android:color/holo_green_dark"
-                android:textIsSelectable="false" />
-
-
+                android:textIsSelectable="false"
+                android:editable="false"/>
 
             <Button
-                android:id="@+id/farm_btnSave"
+                android:id="@+id/period_btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:background="@android:color/holo_green_dark"
-                android:onClick="createFarm"
-                android:text="@string/farm_btnSave"
+                android:onClick="updatePeriod"
+                android:text="@string/period_btnSave"
                 android:textColor="#FFF"
                 android:textStyle="bold" />
 

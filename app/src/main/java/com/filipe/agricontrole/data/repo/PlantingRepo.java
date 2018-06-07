@@ -59,6 +59,28 @@ public class PlantingRepo {
         return plantingId;
     }
 
+    public int update(Planting planting){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Planting.KEY_PlantingId, planting.getId());
+        values.put(Planting.KEY_PlotId, planting.getPlot().getId());
+        values.put(Planting.KEY_PlantingType, planting.getType());
+        values.put(Planting.KEY_PlantingDate, planting.getPlantingDate());
+        values.put(Planting.KEY_EmergencyDate, planting.getEmergencyDate());
+        values.put(Planting.KEY_HarvestDate, planting.getHarvestDate());
+
+        if(planting.getPopulation() != 0.0)
+            values.put(Planting.KEY_Population, planting.getPopulation());
+
+        String id = String.valueOf(planting.getId());
+        String where = Planting.KEY_PlantingId + "=?";
+        String[] whereArgs = new String[] {id};
+        int count = db.update(Planting.TABLE, values, where, whereArgs);
+        DatabaseManager.getInstance().closeDatabase();
+        return count;
+    }
+
+
     public boolean delete(int id) {
         try{
             SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
@@ -73,6 +95,33 @@ public class PlantingRepo {
         }finally {
             DatabaseManager.getInstance().closeDatabase();
         }
+    }
+
+    public Planting findById(int id){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        String query = "SELECT * FROM planting WHERE id = ?";
+        Cursor c =db.rawQuery(query, new String[] {String.valueOf(id)});
+
+        if(c.getCount() > 0){
+            c.moveToFirst();
+
+            planting = new Planting();
+            plot = new Plot();
+
+            planting.setId(c.getInt(0));
+            plot.setId(c.getInt(1));
+            planting.setType(c.getString(2));
+            planting.setPlantingDate(c.getString(3));
+            planting.setPopulation(c.getDouble(4));
+            planting.setEmergencyDate(c.getString(5));
+            planting.setHarvestDate(c.getString(6));
+            planting.setPlot(plot);
+
+            DatabaseManager.getInstance().closeDatabase();
+            return planting;
+        }
+        DatabaseManager.getInstance().closeDatabase();
+        return planting;
     }
 
     public List<Planting> findAllByPlotId(int plotId){

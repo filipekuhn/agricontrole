@@ -90,7 +90,11 @@
         <activity
             android:name=".CreateCategoryActivity"
             android:label="@string/title_activity_create_category"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".UpdateFarmActivity" />
+        <activity android:name=".UpdateProductActivity" />
+        <activity android:name=".UpdatePeriodActivity" />
+        <activity android:name=".UpdatePlantingActivity"></activity>
     </application>
 
 </manifest>

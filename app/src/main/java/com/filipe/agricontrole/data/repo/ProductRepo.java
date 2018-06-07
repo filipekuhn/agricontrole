@@ -78,6 +78,23 @@ public class ProductRepo {
         }
     }
 
+    public int update(Product product){
+        SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Product.KEY_ProductId, product.getId());
+        values.put(Product.KEY_StockId, product.getStock().getId());
+        values.put(Product.KEY_CategoryId, product.getCategory().getId());
+        values.put(Product.KEY_Name, product.getName());
+        values.put(Product.KEY_Quantity, product.getQuantity());
+        values.put(Product.KEY_ExpirationDate, product.getExpiration_date());
+        String id = String.valueOf(product.getId());
+        String where = Product.KEY_ProductId + "=?";
+        String[] whereArgs = new String[] {id};
+        int count = db.update(Product.TABLE, values, where, whereArgs);
+        DatabaseManager.getInstance().closeDatabase();
+        return count;
+    }
+
     public Product findById(int id){
         SQLiteDatabase db = DatabaseManager.getInstance().openDatabase();
         String query = "SELECT p.id, p.name,p.quantity, p.expiration_date, s.id, s.farm_id," +

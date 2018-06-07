@@ -173,6 +173,12 @@ public class FarmActivity extends AppCompatActivity
 
     }
 
+    public void updateFarm(int id){
+        Intent intent = new Intent(this, UpdateFarmActivity.class);
+        intent.putExtra("farmId", id);
+        startActivity(intent);
+    }
+
    public void farmManagement(int index, String name){
         Intent intent = new Intent(this, FarmManagementActivity.class);
         intent.putExtra("farmId", index);

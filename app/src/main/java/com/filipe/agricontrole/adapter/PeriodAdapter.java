@@ -50,7 +50,7 @@ public class PeriodAdapter extends RecyclerView.Adapter<PeriodHolder> {
     public void update(int position){
         int index = periodList.get(position).getId();
 
-        farmManagementActivity.updatePeriod(position, index);
+        farmManagementActivity.updatePeriod(index);
     }
 
     public void viewPlot(int position){
